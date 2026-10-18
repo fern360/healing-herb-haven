@@ -1,0 +1,10 @@
+# Optional: only needed if you deploy from the command line with `npx wrangler deploy`.
+# Set the secret with: npx wrangler secret put SQUARE_ACCESS_TOKEN
+name = "herb-haven-checkout"
+main = "worker.js"
+compatibility_date = "2024-09-23"
+
+[vars]
+SQUARE_ENV = "sandbox"
+SQUARE_LOCATION_ID = "REPLACE_WITH_YOUR_LOCATION_ID"
+SITE_URL = "https://fern360.github.io/healing-herb-haven/"

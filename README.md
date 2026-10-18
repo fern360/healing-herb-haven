@@ -7,6 +7,7 @@ Live site (after GitHub Pages is on): https://fern360.github.io/healing-herb-hav
 ## Files
 - `healing-herbs-haven.html`: the shop page source (also published as a Claude artifact)
 - `index.html`: the full web page GitHub Pages serves, built from the source
+- `payments/worker.js`: Square checkout helper for Cloudflare; see `PAYMENTS.md` to turn on card payments
 - `build.sh`: rebuilds `index.html`; run `sh build.sh` after editing the source
 - `logo.jpg`: logo used on the page; `logo-original.webp`: full-size original
 

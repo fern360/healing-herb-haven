@@ -383,6 +383,8 @@ form.checkout { display: grid; gap: 12px; }
 
 <script>
 const SHIPPING = 6.95, FREE_AT = 50;
+// Address of the Square checkout helper (payments/worker.js). Leave "" to take orders by text only.
+const CHECKOUT_URL = "";
 const SIZES = [
   { id: "1oz", label: "1 oz", mult: 1 },
   { id: "4oz", label: "4 oz", mult: 3.4 },
@@ -516,7 +518,9 @@ function renderCart() {
         <div class="field"><label for="c-ship">Delivery</label>
           <select id="c-ship" name="ship"><option value="std">Standard, 3–5 business days</option><option value="exp">Express, 1–2 business days (+$9.00)</option></select>
         </div>
-        <p class="notice">You'll text your order to us at (760) 916-2700. We'll text back to confirm and send payment details. Nothing is charged on this site.</p>
+        <p class="notice">${CHECKOUT_URL
+          ? "Pay by card, Apple Pay or Google Pay on Square's secure checkout page. Prefer not to pay online? Text your order to (760) 916-2700 instead."
+          : "You'll text your order to us at (760) 916-2700. We'll text back to confirm and send payment details. Nothing is charged on this site."}</p>
         <p class="notice" id="formError" hidden></p>
       </form>`;
     const exp = () => $("c-ship") && $("c-ship").value === "exp" ? 9 : 0;
@@ -525,7 +529,8 @@ function renderCart() {
         <div class="row"><span>Subtotal</span><span>${money(sub)}</span></div>
         <div class="row"><span>Shipping</span><span>${money(ship + exp())}</span></div>
         <div class="row total"><span>Total</span><span>${money(total + exp())}</span></div>
-        <button class="primary" type="submit" form="checkoutForm">Review order text</button>
+        ${CHECKOUT_URL ? `<button class="primary" type="submit" form="checkoutForm" id="payBtn">Pay securely with Square</button>` : ""}
+        <button class="${CHECKOUT_URL ? "secondary" : "primary"}" type="submit" form="checkoutForm" id="textBtn">${CHECKOUT_URL ? "Text my order instead" : "Review order text"}</button>
         <button class="secondary" id="backToCart">Back to basket</button>`;
     };
     paint();
@@ -557,6 +562,37 @@ function renderCart() {
     <div class="row"><span>Shipping</span><span>${ship ? money(ship) : "Free"}</span></div>
     <div class="row total"><span>Total</span><span>${money(total)}</span></div>
     <button class="primary" id="toCheckout">Check out</button>`;
+}
+
+async function payWithSquare(btn) {
+  const msg = $("formError"), v = id => $(id).value.trim();
+  btn.disabled = true; btn.textContent = "Opening secure checkout…"; msg.hidden = true;
+  try {
+    const res = await fetch(CHECKOUT_URL, {
+      method: "POST", headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        items: state.cart.map(l => ({ id: l.id, size: l.size, qty: l.qty })),
+        express: $("c-ship").value === "exp",
+        email: v("c-email"),
+        address: { name: v("c-name"), line1: v("c-addr"), city: v("c-city"), zip: v("c-zip") },
+      }),
+    });
+    const data = await res.json().catch(() => ({}));
+    if (!res.ok || !data.url) throw new Error(data.error || "Checkout isn't available right now.");
+    location.href = data.url;                       // Square's secure payment page
+  } catch (err) {
+    msg.hidden = false;
+    msg.textContent = (err && err.message && !/fetch|network|load/i.test(err.message) ? err.message : "We couldn't reach checkout.") + " You can text your order instead.";
+    btn.disabled = false; btn.textContent = "Pay securely with Square";
+  }
+}
+
+// Square sends shoppers back to …/#thanks after they pay
+function handleThanks() {
+  if (location.hash !== "#thanks") return;
+  state.cart = []; saveCart(); renderCart();
+  try { history.replaceState(null, "", location.pathname + location.search); } catch {}
+  setTimeout(() => toast("Payment received. Thank you! We'll email your receipt and ship soon."), 400);
 }
 
 function openCart() {
@@ -628,6 +664,7 @@ $("drawer").addEventListener("submit", e => {
       `Fill in ${f.querySelector(`label[for="${bad.id}"]`).textContent.toLowerCase()}.`;
     bad.focus(); return;
   }
+  if (CHECKOUT_URL && e.submitter && e.submitter.id === "payBtn") { payWithSquare(e.submitter); return; }
   const express = $("c-ship").value === "exp";
   const { sub, ship, total } = totals();
   const shipping = ship + (express ? 9 : 0);
@@ -841,5 +878,6 @@ function route() {
 }
 addEventListener("hashchange", route);
 route();
+handleThanks();
 renderChips(); renderGrid(); renderCart();
 </script>
