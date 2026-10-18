@@ -30,8 +30,23 @@ const PRODUCTS = {
   thyme:       { name: "Thyme Leaf", price: 2.65 },
   ginger:      { name: "Ginger Root", price: 3.35 },
   licorice:    { name: "Licorice Root", price: 3.0 },
+  "calendula-oil": { name: "Calendula Infused Oil", price: 8.5, oil: true },
+  "arnica-oil":    { name: "Arnica Infused Oil", price: 9.5, oil: true },
+  "stjohns-oil":   { name: "St. John's Wort Oil", price: 10.5, oil: true },
+  "lavender-eo":   { name: "Lavender Essential Oil", price: 16.0, oil: true },
+  "peppermint-eo": { name: "Peppermint Essential Oil", price: 12.0, oil: true },
+  "teatree-eo":    { name: "Tea Tree Essential Oil", price: 11.0, oil: true },
+  "eucalyptus-eo": { name: "Eucalyptus Essential Oil", price: 9.0, oil: true },
 };
-const SIZES = { "1oz": { label: "1 oz", mult: 1 }, "4oz": { label: "4 oz", mult: 3.4 }, "1lb": { label: "1 lb", mult: 11 } };
+// Dried herbs sell by weight, oils by volume
+const SIZES = {
+  "1oz":   { label: "1 oz", mult: 1, kind: "herb" },
+  "4oz":   { label: "4 oz", mult: 3.4, kind: "herb" },
+  "1lb":   { label: "1 lb", mult: 11, kind: "herb" },
+  "1floz": { label: "1 fl oz", mult: 1, kind: "oil" },
+  "2floz": { label: "2 fl oz", mult: 1.8, kind: "oil" },
+  "4floz": { label: "4 fl oz", mult: 3.2, kind: "oil" },
+};
 const SHIPPING_CENTS = 695, FREE_AT_CENTS = 5000, EXPRESS_CENTS = 900;
 
 // Same rounding as the website's priceFor()
@@ -64,7 +79,7 @@ export default {
     for (const it of items) {
       const p = PRODUCTS[String(it.id)], s = SIZES[String(it.size)];
       const qty = Math.round(Number(it.qty));
-      if (!p || !s || !(qty >= 1 && qty <= 50)) return json({ error: "Your basket has an item we don't recognize. Refresh the page and try again." }, 400, headers);
+      if (!p || !s || s.kind !== (p.oil ? "oil" : "herb") || !(qty >= 1 && qty <= 50)) return json({ error: "Your basket has an item we don't recognize. Refresh the page and try again." }, 400, headers);
       const cents = priceCents(p.price, s.mult);
       subtotal += cents * qty;
       lineItems.push({ name: `${p.name}, ${s.label}`, quantity: String(qty), base_price_money: { amount: cents, currency: "USD" } });
