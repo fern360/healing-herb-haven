@@ -2,7 +2,7 @@
 
 Online herb shop: 16 herbs with size pricing, a basket, text-to-order checkout, an "Ask the Herbalist" AI chat, and a Contact page. Orders and questions go by text to (760) 916-2700.
 
-Live site (after GitHub Pages is on): https://fern360.github.io/healing-herb-haven/
+Live site: https://www.healing-herb-haven.com/
 
 ## Files
 - `healing-herbs-haven.html`: the shop page source (also published as a Claude artifact)

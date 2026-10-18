@@ -28,7 +28,7 @@ You'll do this twice: first in **Sandbox** (test mode, no real money), then **Pr
    | `SQUARE_ACCESS_TOKEN` | **Secret** | the Sandbox Access token from step 1 |
    | `SQUARE_LOCATION_ID` | Text | the Location ID from step 1 |
    | `SQUARE_ENV` | Text | `sandbox` |
-   | `SITE_URL` | Text | `https://fern360.github.io/healing-herb-haven/` |
+   | `SITE_URL` | Text | `https://www.healing-herb-haven.com/` |
 
 6. Click **Deploy** (or **Save and deploy**).
 7. Copy the worker's address, shown near the top. It looks like `https://herb-haven-checkout.yourname.workers.dev`.
@@ -45,7 +45,7 @@ to your address, then run `sh build.sh`, commit and push.
 
 ## 4. Test with fake money
 
-1. Open https://fern360.github.io/healing-herb-haven/, add herbs, go to checkout, and tap **Pay securely with Square**.
+1. Open https://www.healing-herb-haven.com/, add herbs, go to checkout, and tap **Pay securely with Square**.
 2. On Square's test page, pay with test card `4111 1111 1111 1111`, any future expiry date, CVV `111`, and any ZIP code.
 3. You should land back on your site with a thank-you message and an empty basket.
 4. Check the order in the Sandbox Dashboard (in the Developer Console, open your app, then **Sandbox test accounts** and **Open in Square Dashboard**).

@@ -8,7 +8,7 @@
 //   SQUARE_ACCESS_TOKEN  (Secret)  Square access token. Sandbox token while testing.
 //   SQUARE_LOCATION_ID   (Text)    Square location id, e.g. "L8X2..."
 //   SQUARE_ENV           (Text)    "sandbox" while testing, "production" when live
-//   SITE_URL             (Text)    https://fern360.github.io/healing-herb-haven/
+//   SITE_URL             (Text)    https://www.healing-herb-haven.com/
 //
 // KEEP IN SYNC: if you change a price, size or product on the website
 // (healing-herbs-haven.html), change it here too, or checkout totals will differ.
@@ -38,7 +38,7 @@ const SHIPPING_CENTS = 695, FREE_AT_CENTS = 5000, EXPRESS_CENTS = 900;
 const priceCents = (price, mult) => Math.round((Math.round(price * mult * 4) / 4 - (mult > 1 ? 0.05 : 0)) * 100);
 
 function cors(origin, env) {
-  const site = new URL(env.SITE_URL || "https://fern360.github.io/").origin;
+  const site = new URL(env.SITE_URL || "https://www.healing-herb-haven.com/").origin;
   return {
     "Access-Control-Allow-Origin": origin === site ? origin : site,
     "Access-Control-Allow-Methods": "POST, OPTIONS",
@@ -83,7 +83,7 @@ export default {
       first_name: first || undefined, last_name: rest.join(" ") || undefined,
     } : undefined;
 
-    const site = env.SITE_URL || "https://fern360.github.io/healing-herb-haven/";
+    const site = env.SITE_URL || "https://www.healing-herb-haven.com/";
     const api = env.SQUARE_ENV === "production" ? "https://connect.squareup.com" : "https://connect.squareupsandbox.com";
 
     const res = await fetch(`${api}/v2/online-checkout/payment-links`, {
