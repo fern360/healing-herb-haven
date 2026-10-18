@@ -111,6 +111,10 @@ select.sort { background: var(--surface-solid); border: 1px solid var(--line-sof
 .swatch { position: relative; aspect-ratio: 5 / 3; max-width: 100%; display: grid; place-items: center; border-bottom: 1px solid var(--line); background: radial-gradient(circle at 50% 55%, var(--c) 0%, color-mix(in srgb, var(--c) 45%, #0A0720) 55%, #0A0720 100%); }
 .swatch::before { content: ""; position: absolute; inset: 0; background-image: radial-gradient(1px 1px at 20% 30%, #fff 50%, transparent 51%), radial-gradient(1px 1px at 80% 20%, #fff 50%, transparent 51%), radial-gradient(1px 1px at 70% 80%, #fff 50%, transparent 51%), radial-gradient(1px 1px at 12% 78%, #fff 50%, transparent 51%); opacity: .8; }
 .swatch svg { position: relative; width: 44%; height: auto; filter: drop-shadow(0 0 10px rgba(255, 255, 255, .45)); }
+.swatch .photo-bg { position: absolute; inset: -12px; width: calc(100% + 24px); height: calc(100% + 24px); max-width: none; object-fit: cover; filter: blur(14px) brightness(.8); }
+.swatch .photo { position: relative; height: 100%; width: 100%; object-fit: contain; }
+.swatch:has(.photo) { padding: 0; overflow: hidden; }
+.swatch .lot, .swatch .tag { z-index: 2; }
 .swatch .lot { position: absolute; left: 12px; top: 10px; font-family: var(--f-mono); font-size: 10px; letter-spacing: .08em; color: rgba(255,255,255,.8); }
 .swatch .tag { position: absolute; right: 10px; top: 10px; font-family: var(--f-display); font-size: 10px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; background: var(--gold); color: var(--gold-ink); padding: 3px 9px; border-radius: 999px; }
 .card-body { padding: 14px 16px 16px; display: flex; flex-direction: column; gap: 8px; flex: 1; }
@@ -143,6 +147,7 @@ footer .tagline { font-family: var(--f-display); letter-spacing: .2em; text-tran
 .drawer-body { flex: 1; overflow-y: auto; padding: 16px 20px; display: flex; flex-direction: column; gap: 14px; }
 .line { display: grid; grid-template-columns: 48px minmax(0, 1fr) auto; gap: 12px; align-items: center; }
 .line .dot { width: 48px; height: 48px; border-radius: 50%; box-shadow: 0 0 12px rgba(255,255,255,.15); }
+.line .dot.has-photo { background-size: cover; background-position: center; }
 .line .name { font-weight: 500; }
 .line .sub { font-size: 12.5px; color: var(--muted); }
 .qty { display: inline-flex; align-items: center; border: 1px solid var(--line-soft); border-radius: 999px; margin-top: 4px; }
@@ -431,7 +436,7 @@ const PRODUCTS = [
   { id: "pcos-blend", name: "PCOS Tea", latin: "Spearmint · Ginger · Ceylon cinnamon · Dandelion root", cat: "remedies", origin: "Blended in house", cut: "Loose-leaf blend", price: 6.0, color: "#2E8C7A", shape: "cup", tag: "New", desc: "Fresh spearmint, warming ginger and cinnamon, and earthy roasted dandelion root. Pregnant, trying to conceive, or taking diabetes, hormone or water-pill medicine? Ask your doctor first." },
   { id: "quiet-mind", name: "Quiet the Mind Remedy", latin: "Chamomile · Lavender · Lemon balm · Valerian root", cat: "remedies", origin: "Blended in house", cut: "Loose-leaf blend", price: 6.5, color: "#4B3F8C", shape: "cup", tag: "New", desc: "Soft chamomile, floral lavender and lemon balm with earthy valerian root, for a slow evening cup. May cause drowsiness. Avoid with sleep aids, sedatives or alcohol, and during pregnancy." },
   { id: "menstrual-mix", name: "Menstrual Mix", latin: "Red rose · Hibiscus · Spearmint · Ceylon cinnamon", cat: "remedies", origin: "Blended in house", cut: "Loose-leaf blend", price: 6.25, color: "#B3263F", shape: "cup", tag: "New", desc: "Red rose petals and tart hibiscus with cool spearmint and warm cinnamon, a comforting cup for your cycle. Not for use during pregnancy." },
-  { id: "oregano-eo", name: "Oregano Essential Oil", latin: "Origanum vulgare", cat: "oils", origin: "Turkey", cut: "Steam-distilled", price: 14.0, color: "#6B7A2E", shape: "drop", desc: "Warm, spicy, herbaceous oil rich in carvacrol. Very strong: dilute well before skin use. Not for children or pregnancy." },
+  { id: "oregano-eo", name: "Oregano Essential Oil", latin: "Origanum vulgare", cat: "oils", origin: "Turkey", cut: "Steam-distilled", price: 14.0, color: "#6B7A2E", shape: "drop", img: "images/oregano-oil.jpg", desc: "Warm, spicy, herbaceous oil rich in carvacrol. Very strong: dilute well before skin use. Not for children or pregnancy." },
 ];
 
 const SHAPES = {
@@ -490,7 +495,7 @@ function renderGrid() {
       <div class="swatch" style="--c:${p.color};color:${p.color}">
         <span class="lot">${lotCode(p)}</span>
         ${p.tag ? `<span class="tag">${p.tag}</span>` : ""}
-        <svg viewBox="0 0 100 100" aria-hidden="true">${SHAPES[p.shape]}</svg>
+        ${p.img ? `<img class="photo-bg" src="${p.img}" alt="" aria-hidden="true"><img class="photo" src="${p.img}" alt="${p.name} bottle" loading="lazy">` : `<svg viewBox="0 0 100 100" aria-hidden="true">${SHAPES[p.shape]}</svg>`}
       </div>
       <div class="card-body">
         <div><h3>${p.name}</h3><div class="latin">${p.latin}</div></div>
@@ -570,7 +575,7 @@ function renderCart() {
     ${state.cart.map((l, i) => {
       const p = PRODUCTS.find(p => p.id === l.id), s = SIZES.find(s => s.id === l.size);
       return `<div class="line">
-        <div class="dot" style="background:${p.color}"></div>
+        <div class="dot${p.img ? " has-photo" : ""}" style="background-color:${p.color}${p.img ? `;background-image:url('${p.img}')` : ""}"></div>
         <div style="min-width:0"><div class="name">${p.name}</div><div class="sub">${s.label} · ${money(priceFor(p, l.size))} each</div>
           <div class="qty"><button data-dec="${i}" aria-label="Decrease quantity">−</button><span>${l.qty}</span><button data-inc="${i}" aria-label="Increase quantity">+</button></div></div>
         <div><div class="price">${money(priceFor(p, l.size) * l.qty)}</div><button class="remove" data-rm="${i}">Remove</button></div>
