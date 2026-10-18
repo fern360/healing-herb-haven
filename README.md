@@ -1,6 +1,6 @@
 # Healing Herb Haven
 
-Online herb shop: 16 dried herbs and 8 remedy oils with size pricing, a basket, text-to-order checkout, an "Ask the Herbalist" AI chat, and a Contact page. Orders and questions go by text to (760) 916-2700.
+Online herb shop: 16 dried herbs and oregano essential oil with size pricing, a basket, text-to-order checkout, an "Ask the Herbalist" AI chat, and a Contact page. Orders and questions go by text to (760) 916-2700.
 
 Live site: https://www.healing-herb-haven.com/
 

@@ -30,13 +30,6 @@ const PRODUCTS = {
   thyme:       { name: "Thyme Leaf", price: 2.65 },
   ginger:      { name: "Ginger Root", price: 3.35 },
   licorice:    { name: "Licorice Root", price: 3.0 },
-  "calendula-oil": { name: "Calendula Infused Oil", price: 8.5, oil: true },
-  "arnica-oil":    { name: "Arnica Infused Oil", price: 9.5, oil: true },
-  "stjohns-oil":   { name: "St. John's Wort Oil", price: 10.5, oil: true },
-  "lavender-eo":   { name: "Lavender Essential Oil", price: 16.0, oil: true },
-  "peppermint-eo": { name: "Peppermint Essential Oil", price: 12.0, oil: true },
-  "teatree-eo":    { name: "Tea Tree Essential Oil", price: 11.0, oil: true },
-  "eucalyptus-eo": { name: "Eucalyptus Essential Oil", price: 9.0, oil: true },
   "oregano-eo":    { name: "Oregano Essential Oil", price: 14.0, oil: true },
 };
 // Dried herbs sell by weight, oils by volume
