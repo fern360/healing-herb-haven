@@ -37,6 +37,7 @@ const PRODUCTS = {
   "peppermint-eo": { name: "Peppermint Essential Oil", price: 12.0, oil: true },
   "teatree-eo":    { name: "Tea Tree Essential Oil", price: 11.0, oil: true },
   "eucalyptus-eo": { name: "Eucalyptus Essential Oil", price: 9.0, oil: true },
+  "oregano-eo":    { name: "Oregano Essential Oil", price: 14.0, oil: true },
 };
 // Dried herbs sell by weight, oils by volume
 const SIZES = {
