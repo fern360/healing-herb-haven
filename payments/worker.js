@@ -35,6 +35,7 @@ const PRODUCTS = {
   "digest-blend":  { name: "After-Dinner Digest Blend", price: 5.75 },
   "calm-blend":    { name: "Calm & Bright Blend", price: 6.25 },
   "bp-blend":      { name: "High Blood Pressure Tea", price: 6.25 },
+  "pcos-blend":    { name: "PCOS Tea", price: 6.0 },
   "oregano-eo":    { name: "Oregano Essential Oil", price: 14.0, oil: true },
 };
 // Dried herbs sell by weight, oils by volume
