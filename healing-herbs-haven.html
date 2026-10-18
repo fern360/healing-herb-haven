@@ -438,10 +438,7 @@ const store = {
 const state = {
   cat: "all", q: "", sort: "featured",
   size: {},                               // productId -> sizeId
-  cart: store.get("hhh-cart", [            // example basket so the drawer opens in a working state
-    { id: "chamomile", size: "4oz", qty: 1 },
-    { id: "peppermint", size: "1oz", qty: 2 },
-  ]),
+  cart: store.get("hhh-cart", []),
   view: "cart",                           // cart | checkout | done
 };
 
@@ -519,7 +516,7 @@ function renderCart() {
         <div class="field"><label for="c-ship">Delivery</label>
           <select id="c-ship" name="ship"><option value="std">Standard, 3–5 business days</option><option value="exp">Express, 1–2 business days (+$9.00)</option></select>
         </div>
-        <p class="notice">Demo checkout: no payment is taken. Connect a payment provider such as Stripe or Square before you start selling.</p>
+        <p class="notice">You'll text your order to us at (760) 916-2700. We'll text back to confirm and send payment details. Nothing is charged on this site.</p>
         <p class="notice" id="formError" hidden></p>
       </form>`;
     const exp = () => $("c-ship") && $("c-ship").value === "exp" ? 9 : 0;
@@ -528,7 +525,7 @@ function renderCart() {
         <div class="row"><span>Subtotal</span><span>${money(sub)}</span></div>
         <div class="row"><span>Shipping</span><span>${money(ship + exp())}</span></div>
         <div class="row total"><span>Total</span><span>${money(total + exp())}</span></div>
-        <button class="primary" type="submit" form="checkoutForm">Place order</button>
+        <button class="primary" type="submit" form="checkoutForm">Review order text</button>
         <button class="secondary" id="backToCart">Back to basket</button>`;
     };
     paint();
@@ -631,22 +628,36 @@ $("drawer").addEventListener("submit", e => {
       `Fill in ${f.querySelector(`label[for="${bad.id}"]`).textContent.toLowerCase()}.`;
     bad.focus(); return;
   }
-  const exp = $("c-ship").value === "exp" ? 9 : 0;
-  const { total } = totals();
+  const express = $("c-ship").value === "exp";
+  const { sub, ship, total } = totals();
+  const shipping = ship + (express ? 9 : 0);
   const orderNo = "HHH-" + Math.floor(100000 + Math.random() * 900000);
-  const name = $("c-name").value.trim().split(" ")[0];
-  const email = $("c-email").value.trim();
+  const v = id => $(id).value.trim();
+  const items = state.cart.map(l => {
+    const p = PRODUCTS.find(p => p.id === l.id), s = SIZES.find(s => s.id === l.size);
+    return `- ${l.qty} x ${p.name} ${s.label} = ${money(priceFor(p, l.size) * l.qty)}`;
+  });
+  const orderText = [
+    `New order ${orderNo} for Healing Herb Haven`,
+    ...items,
+    `Subtotal ${money(sub)}, shipping ${shipping ? money(shipping) : "free"} (${express ? "express" : "standard"}), total ${money(total + (express ? 9 : 0))}`,
+    `Ship to: ${v("c-name")}, ${v("c-addr")}, ${v("c-city")} ${v("c-zip")}`,
+    `Email: ${v("c-email")}`,
+  ].join("\n");
   state.view = "done";
-  $("drawerTitle").textContent = "Order placed";
+  $("drawerTitle").textContent = "Send your order";
   $("drawerBody").innerHTML = `<div class="confirm">
-    <div class="seal" aria-hidden="true">✓</div>
-    <h2 style="font-size:26px">Thank you, ${escapeHtml(name)}.</h2>
     <span class="order-no">${orderNo}</span>
-    <p style="color:var(--muted);margin:0;max-width:34ch">Your order total is <b>${money(total + exp)}</b>. In a live store, a confirmation would go to ${escapeHtml(email)} and your herbs would be weighed and packed within one business day.</p>
+    <p style="color:var(--muted);margin:0;max-width:36ch">Your order isn't placed until you text it to us. Tap the button to open Messages, then press send. We'll text back to confirm and arrange payment.</p>
+    <div class="preview" style="width:100%;text-align:left"><div class="bubble" id="orderText"></div></div>
   </div>`;
-  $("drawerFoot").innerHTML = `<button class="primary" id="keepShopping">Keep shopping</button>`;
-  state.cart = []; saveCart();
-  $("cartCount").textContent = 0;
+  $("orderText").textContent = orderText;
+  $("drawerFoot").innerHTML = `
+    <a class="primary" style="text-align:center;text-decoration:none" href="sms:${SHOP_PHONE}?&body=${encodeURIComponent(orderText)}">Text order to (760) 916-2700</a>
+    <button class="secondary" id="copyOrder">Copy order text</button>
+    <button class="secondary" id="sentOrder">I sent it, clear my basket</button>`;
+  $("copyOrder").onclick = () => copyText(orderText, "Order copied", $("orderText"));
+  $("sentOrder").onclick = () => { state.cart = []; saveCart(); state.view = "cart"; renderCart(); closeCart(); toast("Thanks! We'll text you back soon."); };
 });
 
 

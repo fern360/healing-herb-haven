@@ -1,1 +1,847 @@
-<!doctype html><meta charset="utf-8"><meta http-equiv="refresh" content="0; url=healing-herbs-haven.html"><title>Healing Herb Haven</title><a href="healing-herbs-haven.html">Healing Herb Haven</a>
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="description" content="Healing Herb Haven: organic dried herbs, teas and spices. Natural wellness for a brighter you."><link rel="icon" href="logo.jpg"><style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0;font:14px system-ui,sans-serif}img{max-width:100%}[hidden]{display:none!important}</style></head><body>
+<title>Healing Herb Haven</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Great+Vibes&family=Work+Sans:wght@400;500;600&family=IBM+Plex+Mono:ital,wght@0,400;1,400&display=swap">
+<style>
+/* Layout: night-sky apothecary from the logo — starfield ground, gold-rimmed glass cards, moon-phase dividers. Single dark look by design. */
+:root {
+  color-scheme: dark;
+  --bg: #0A0720;
+  --bg-2: #140D33;
+  --surface: rgba(28, 20, 66, .72);
+  --surface-solid: #1A1340;
+  --ink: #F4EFFF;
+  --muted: #B9B0DA;
+  --line: rgba(232, 185, 84, .28);
+  --line-soft: rgba(185, 176, 218, .18);
+  --gold: #E8B954;
+  --gold-hi: #FFE3A0;
+  --gold-ink: #22160A;
+  --leaf: #7FD36B;
+  --chip: rgba(255, 255, 255, .06);
+  --ok: #8FE08A;
+  --rainbow: linear-gradient(90deg, #FF6FB5, #C77DFF 30%, #6FA8FF 55%, #5FE3C0 80%, #FFD36F);
+  --shadow: 0 18px 50px rgba(0, 0, 0, .55), 0 0 0 1px rgba(232, 185, 84, .25);
+  --f-display: "Cinzel", "Trajan Pro", Georgia, serif;
+  --f-script: "Great Vibes", "Snell Roundhand", cursive;
+  --f-body: "Work Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --f-mono: "IBM Plex Mono", ui-monospace, Menlo, monospace;
+  --r: 14px;
+}
+* { box-sizing: border-box; }
+body {
+  background-color: var(--bg);
+  background-image:
+    radial-gradient(1px 1px at 12% 18%, #fff 50%, transparent 51%),
+    radial-gradient(1px 1px at 72% 8%, #fff 50%, transparent 51%),
+    radial-gradient(1.5px 1.5px at 38% 42%, #ffe9b8 50%, transparent 51%),
+    radial-gradient(1px 1px at 88% 36%, #fff 50%, transparent 51%),
+    radial-gradient(1px 1px at 22% 72%, #cfe0ff 50%, transparent 51%),
+    radial-gradient(1.5px 1.5px at 62% 64%, #fff 50%, transparent 51%),
+    radial-gradient(1px 1px at 92% 86%, #ffd6f0 50%, transparent 51%),
+    radial-gradient(1px 1px at 6% 94%, #fff 50%, transparent 51%),
+    radial-gradient(60% 45% at 85% 5%, rgba(199, 125, 255, .22), transparent 70%),
+    radial-gradient(50% 40% at 0% 30%, rgba(255, 111, 181, .14), transparent 70%),
+    radial-gradient(55% 45% at 100% 70%, rgba(95, 140, 255, .16), transparent 70%);
+  background-size: 260px 260px, 310px 310px, 420px 420px, 230px 230px, 380px 380px, 290px 290px, 340px 340px, 270px 270px, 100% 1400px, 100% 1400px, 100% 1400px;
+  background-repeat: repeat, repeat, repeat, repeat, repeat, repeat, repeat, repeat, no-repeat, no-repeat, no-repeat;
+  color: var(--ink); font-family: var(--f-body); font-size: 15px; line-height: 1.55;
+}
+button, input, select, textarea { font: inherit; color: inherit; }
+button { cursor: pointer; }
+:focus-visible { outline: 2px solid var(--gold-hi); outline-offset: 2px; }
+.wrap { max-width: 1160px; margin: 0 auto; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+h1, h2, h3 { font-family: var(--f-display); font-weight: 700; text-wrap: balance; margin: 0; letter-spacing: .02em; }
+.gold { background: linear-gradient(180deg, var(--gold-hi), var(--gold) 55%, #B9832B); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.script { font-family: var(--f-script); font-weight: 400; background: var(--rainbow); -webkit-background-clip: text; background-clip: text; color: transparent; letter-spacing: 0; text-transform: none; }
+.latin { font-family: var(--f-mono); font-style: italic; font-size: 12px; color: var(--muted); }
+.label { font-family: var(--f-display); font-size: 11px; letter-spacing: .22em; text-transform: uppercase; color: var(--gold); }
+
+/* Header */
+header.top { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 20; background: rgba(10, 7, 32, .82); backdrop-filter: blur(10px); border-bottom: 1px solid var(--line); }
+header.top .wrap { display: flex; align-items: center; gap: 16px; padding-block: 10px; }
+.brand { display: flex; align-items: center; gap: 12px; text-decoration: none; color: var(--ink); margin-right: auto; min-width: 0; }
+.brand img { width: 44px; height: 44px; border-radius: 50%; flex: none; box-shadow: 0 0 14px rgba(232, 185, 84, .45); }
+.brand b { font-family: var(--f-display); font-weight: 700; font-size: 18px; line-height: 1.1; letter-spacing: .04em; }
+.brand small { display: block; font-family: var(--f-display); font-size: 10px; letter-spacing: .24em; text-transform: uppercase; color: var(--muted); }
+.cart-btn { display: inline-flex; align-items: center; gap: 8px; border: 1px solid var(--gold); background: rgba(232, 185, 84, .08); color: var(--gold-hi); border-radius: 999px; padding: 8px 16px; font-weight: 500; flex: none; }
+.cart-btn .count { background: var(--gold); color: var(--gold-ink); border-radius: 999px; min-width: 22px; height: 22px; display: inline-grid; place-items: center; font-size: 12px; font-weight: 600; font-variant-numeric: tabular-nums; padding: 0 6px; }
+
+/* Intro */
+.intro { padding-block: 40px 24px; display: grid; grid-template-columns: minmax(0, 300px) minmax(0, 1fr); gap: 40px; align-items: center; }
+.intro .logo { width: 100%; max-width: 300px; aspect-ratio: 1; border-radius: 50%; box-shadow: 0 0 60px rgba(199, 125, 255, .35), 0 0 24px rgba(232, 185, 84, .4); animation: glow 6s ease-in-out infinite alternate; }
+@keyframes glow { to { box-shadow: 0 0 80px rgba(95, 227, 192, .3), 0 0 30px rgba(232, 185, 84, .55); } }
+.intro h1 { font-size: clamp(30px, 4.6vw, 52px); line-height: 1.08; margin-top: 10px; }
+.intro h1 .script { display: block; font-size: 1.5em; line-height: 1; padding: .05em 0 .1em; }
+.intro p { color: var(--muted); max-width: 50ch; margin: 12px 0 0; }
+.pillars { display: flex; flex-wrap: wrap; gap: 6px 14px; margin-top: 18px; font-family: var(--f-display); font-size: 12px; letter-spacing: .2em; color: var(--gold-hi); }
+.pillars span + span::before { content: "✦"; color: var(--gold); margin-right: 14px; font-size: 10px; }
+.promises { list-style: none; margin: 20px 0 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
+.promises li { border: 1px solid var(--line); border-radius: 10px; padding: 10px 12px; font-size: 13px; color: var(--muted); background: rgba(255,255,255,.03); }
+.promises li b { display: block; font-family: var(--f-display); color: var(--gold-hi); font-size: 13px; letter-spacing: .08em; }
+
+/* Moon phase divider, borrowed from the logo */
+.moons { display: flex; align-items: center; gap: 12px; justify-content: center; padding-block: 8px; color: var(--gold); }
+.moons::before, .moons::after { content: ""; flex: 1; height: 1px; background: linear-gradient(90deg, transparent, var(--line)); }
+.moons::after { background: linear-gradient(90deg, var(--line), transparent); }
+.moons span { width: 12px; height: 12px; border-radius: 50%; background: var(--gold-hi); }
+.moons .m1 { box-shadow: inset 5px 0 0 0 var(--bg); }
+.moons .m2 { box-shadow: inset 3px 0 0 0 var(--bg); }
+.moons .full { width: 16px; height: 16px; box-shadow: 0 0 12px var(--gold); }
+.moons .m3 { box-shadow: inset -3px 0 0 0 var(--bg); }
+.moons .m4 { box-shadow: inset -5px 0 0 0 var(--bg); }
+
+/* Controls */
+.controls { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; padding-block: 16px 22px; }
+.chips { display: flex; flex-wrap: wrap; gap: 8px; margin-right: auto; }
+.chip { border: 1px solid var(--line-soft); background: var(--chip); border-radius: 999px; padding: 6px 14px; font-size: 14px; }
+.chip:hover { border-color: var(--line); }
+.chip[aria-pressed="true"] { background: var(--gold); border-color: var(--gold); color: var(--gold-ink); font-weight: 500; }
+.chip .label { color: inherit; letter-spacing: .05em; opacity: .7; font-family: var(--f-mono); }
+.search { display: flex; align-items: center; gap: 8px; background: var(--surface); border: 1px solid var(--line-soft); border-radius: 999px; padding: 6px 14px; min-width: 0; flex: 0 1 260px; }
+.search input { border: 0; background: transparent; outline: none; width: 100%; min-width: 0; }
+.search input::placeholder { color: var(--muted); }
+select.sort { background: var(--surface-solid); border: 1px solid var(--line-soft); border-radius: 999px; padding: 7px 12px; }
+
+/* Grid */
+.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 18px; padding-bottom: 48px; }
+.card { background: var(--surface); backdrop-filter: blur(6px); border: 1px solid var(--line); border-radius: var(--r); display: flex; flex-direction: column; overflow: hidden; transition: transform .2s ease, box-shadow .2s ease; }
+.card:hover { transform: translateY(-3px); box-shadow: var(--shadow), 0 0 30px rgba(199, 125, 255, .2); }
+.swatch { position: relative; aspect-ratio: 5 / 3; max-width: 100%; display: grid; place-items: center; border-bottom: 1px solid var(--line); background: radial-gradient(circle at 50% 55%, var(--c) 0%, color-mix(in srgb, var(--c) 45%, #0A0720) 55%, #0A0720 100%); }
+.swatch::before { content: ""; position: absolute; inset: 0; background-image: radial-gradient(1px 1px at 20% 30%, #fff 50%, transparent 51%), radial-gradient(1px 1px at 80% 20%, #fff 50%, transparent 51%), radial-gradient(1px 1px at 70% 80%, #fff 50%, transparent 51%), radial-gradient(1px 1px at 12% 78%, #fff 50%, transparent 51%); opacity: .8; }
+.swatch svg { position: relative; width: 44%; height: auto; filter: drop-shadow(0 0 10px rgba(255, 255, 255, .45)); }
+.swatch .lot { position: absolute; left: 12px; top: 10px; font-family: var(--f-mono); font-size: 10px; letter-spacing: .08em; color: rgba(255,255,255,.8); }
+.swatch .tag { position: absolute; right: 10px; top: 10px; font-family: var(--f-display); font-size: 10px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; background: var(--gold); color: var(--gold-ink); padding: 3px 9px; border-radius: 999px; }
+.card-body { padding: 14px 16px 16px; display: flex; flex-direction: column; gap: 8px; flex: 1; }
+.card h3 { font-size: 18px; line-height: 1.2; color: var(--gold-hi); }
+.meta { display: flex; flex-wrap: wrap; gap: 4px 12px; font-size: 12.5px; color: var(--muted); }
+.desc { font-size: 14px; color: var(--muted); margin: 0; }
+.sizes { display: flex; gap: 6px; margin-top: auto; padding-top: 6px; }
+.size { flex: 1; border: 1px solid var(--line-soft); background: transparent; border-radius: 8px; padding: 6px 4px; font-size: 12.5px; line-height: 1.2; text-align: center; color: var(--muted); }
+.size b { display: block; font-variant-numeric: tabular-nums; font-weight: 600; font-size: 14px; color: var(--ink); }
+.size[aria-pressed="true"] { border-color: var(--gold); background: rgba(232, 185, 84, .12); color: var(--gold-hi); }
+.add { border: 0; background: linear-gradient(180deg, var(--gold-hi), var(--gold)); color: var(--gold-ink); border-radius: 8px; padding: 10px; font-weight: 600; }
+.add:hover { box-shadow: 0 0 18px rgba(232, 185, 84, .5); }
+.empty { grid-column: 1 / -1; text-align: center; padding: 48px 16px; color: var(--muted); }
+
+/* Story + footer */
+.story { padding-block: 32px 40px; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 28px; }
+.story h2 { font-size: 17px; margin-bottom: 6px; color: var(--gold-hi); }
+.story p { color: var(--muted); margin: 0; font-size: 14px; }
+footer { border-top: 1px solid var(--line); padding-block: 24px 40px; font-size: 12.5px; color: var(--muted); }
+footer .disclaimer { max-width: 80ch; margin: 0 0 10px; }
+footer .tagline { font-family: var(--f-display); letter-spacing: .2em; text-transform: uppercase; color: var(--gold); }
+
+/* Drawer */
+.scrim { position: fixed; inset: 0; background: rgba(4, 2, 14, .6); z-index: 40; }
+.drawer { position: fixed; top: 0; right: 0; bottom: 0; width: min(440px, 100%); background: linear-gradient(180deg, var(--bg-2), var(--bg)); border-left: 1px solid var(--line); z-index: 50; display: flex; flex-direction: column; box-shadow: var(--shadow); padding-top: env(safe-area-inset-top, 0px); padding-bottom: env(safe-area-inset-bottom, 0px); padding-right: env(safe-area-inset-right, 0px); transform: translateX(0); transition: transform .25s ease; }
+.drawer.closed { transform: translateX(105%); }
+.drawer-head { display: flex; align-items: center; justify-content: space-between; padding: 18px 20px; border-bottom: 1px solid var(--line); }
+.drawer-head h2 { font-size: 20px; color: var(--gold-hi); }
+.icon-btn { border: 1px solid var(--line); background: var(--surface-solid); border-radius: 999px; width: 36px; height: 36px; display: grid; place-items: center; font-size: 18px; }
+.drawer-body { flex: 1; overflow-y: auto; padding: 16px 20px; display: flex; flex-direction: column; gap: 14px; }
+.line { display: grid; grid-template-columns: 48px minmax(0, 1fr) auto; gap: 12px; align-items: center; }
+.line .dot { width: 48px; height: 48px; border-radius: 50%; box-shadow: 0 0 12px rgba(255,255,255,.15); }
+.line .name { font-weight: 500; }
+.line .sub { font-size: 12.5px; color: var(--muted); }
+.qty { display: inline-flex; align-items: center; border: 1px solid var(--line-soft); border-radius: 999px; margin-top: 4px; }
+.qty button { border: 0; background: transparent; width: 28px; height: 26px; }
+.qty span { min-width: 22px; text-align: center; font-variant-numeric: tabular-nums; font-size: 13px; }
+.line .price { font-variant-numeric: tabular-nums; font-weight: 600; text-align: right; }
+.remove { border: 0; background: none; color: var(--muted); font-size: 12px; text-decoration: underline; padding: 0; display: block; margin-left: auto; margin-top: 4px; }
+.ship-meter { font-size: 13px; color: var(--muted); }
+.ship-meter .bar { height: 6px; border-radius: 999px; background: var(--chip); margin-top: 6px; overflow: hidden; }
+.ship-meter .bar i { display: block; height: 100%; background: var(--rainbow); border-radius: 999px; transition: width .3s ease; }
+.drawer-foot { border-top: 1px solid var(--line); padding: 16px 20px 20px; display: grid; gap: 8px; }
+.row { display: flex; justify-content: space-between; font-variant-numeric: tabular-nums; }
+.row.total { font-weight: 600; font-size: 17px; padding-top: 6px; border-top: 1px dashed var(--line); color: var(--gold-hi); }
+.primary { border: 0; background: linear-gradient(180deg, var(--gold-hi), var(--gold)); color: var(--gold-ink); border-radius: 10px; padding: 13px; font-weight: 600; font-size: 15px; margin-top: 6px; }
+.primary:disabled { opacity: .45; cursor: not-allowed; }
+.secondary { border: 1px solid var(--line); background: transparent; border-radius: 10px; padding: 11px; font-weight: 500; }
+
+form.checkout { display: grid; gap: 12px; }
+.field { display: grid; gap: 4px; }
+.field label { font-size: 13px; font-weight: 500; }
+.field input, .field select { background: var(--surface-solid); border: 1px solid var(--line-soft); border-radius: 8px; padding: 10px 12px; width: 100%; }
+.field input:invalid:not(:placeholder-shown) { border-color: #FF7A8A; }
+.two { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 10px; }
+.notice { font-size: 12.5px; background: var(--chip); border: 1px solid var(--line-soft); border-radius: 8px; padding: 10px 12px; color: var(--muted); margin: 0; }
+.confirm { text-align: center; padding: 28px 8px; display: grid; gap: 10px; justify-items: center; }
+.confirm .seal { width: 72px; height: 72px; border-radius: 50%; border: 2px solid var(--gold); display: grid; place-items: center; color: var(--gold-hi); font-size: 30px; box-shadow: 0 0 24px rgba(232, 185, 84, .45); }
+.confirm .order-no { font-family: var(--f-mono); font-size: 14px; background: var(--chip); padding: 4px 10px; border-radius: 6px; }
+
+.toast { position: fixed; left: 50%; bottom: calc(20px + env(safe-area-inset-bottom, 0px)); transform: translate(-50%, 20px); background: var(--gold); color: var(--gold-ink); font-weight: 500; padding: 10px 18px; border-radius: 999px; font-size: 14px; opacity: 0; pointer-events: none; transition: opacity .2s, transform .2s; z-index: 60; }
+.toast.show { opacity: 1; transform: translate(-50%, 0); }
+
+@media (max-width: 760px) {
+  .intro { grid-template-columns: 1fr; justify-items: center; text-align: center; padding-block: 24px 16px; gap: 20px; }
+  .intro .logo { max-width: 220px; }
+  .intro p { margin-inline: auto; }
+  .pillars { justify-content: center; }
+  .promises { grid-template-columns: 1fr; text-align: left; width: 100%; }
+  .story { grid-template-columns: 1fr; }
+  .search { flex: 1 1 100%; }
+  .brand small { display: none; }
+  .brand b { font-size: 15px; }
+}
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; animation: none !important; } }
+
+/* Contact page */
+.nav-link { color: var(--muted); text-decoration: none; font-family: var(--f-display); font-size: 13px; letter-spacing: .14em; text-transform: uppercase; padding: 6px 4px; flex: none; }
+.nav-link:hover, .nav-link[aria-current="page"] { color: var(--gold-hi); }
+.contact { padding-block: 40px 56px; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr); gap: 32px; align-items: start; }
+.contact h1 { font-size: clamp(28px, 4vw, 44px); line-height: 1.1; margin-top: 8px; }
+.contact h1 .script { display: block; font-size: 1.4em; line-height: 1.05; }
+.contact .lead { color: var(--muted); max-width: 46ch; margin: 12px 0 22px; }
+.phone-card { border: 1px solid var(--line); border-radius: var(--r); background: var(--surface); padding: 18px; display: grid; gap: 12px; }
+.phone-num { font-family: var(--f-display); font-size: clamp(24px, 3.4vw, 32px); color: var(--gold-hi); letter-spacing: .04em; font-variant-numeric: tabular-nums; user-select: all; }
+.phone-actions { display: flex; flex-wrap: wrap; gap: 8px; }
+.phone-actions a, .phone-actions button { display: inline-flex; align-items: center; gap: 6px; border: 1px solid var(--line); background: rgba(232, 185, 84, .08); color: var(--gold-hi); border-radius: 999px; padding: 8px 16px; text-decoration: none; font-weight: 500; font-size: 14px; }
+.phone-actions a.main { background: linear-gradient(180deg, var(--gold-hi), var(--gold)); color: var(--gold-ink); border-color: var(--gold); }
+.hours { list-style: none; margin: 0; padding: 0; display: grid; gap: 6px; font-size: 14px; }
+.hours li { display: flex; justify-content: space-between; gap: 12px; border-bottom: 1px dashed var(--line-soft); padding-bottom: 6px; font-variant-numeric: tabular-nums; }
+.hours li span:first-child { color: var(--muted); }
+.sms-card { border: 1px solid var(--line); border-radius: var(--r); background: var(--surface); padding: 20px; display: grid; gap: 14px; }
+.sms-card h2 { font-size: 18px; color: var(--gold-hi); }
+.sms-card textarea { background: var(--surface-solid); border: 1px solid var(--line-soft); border-radius: 8px; padding: 10px 12px; width: 100%; min-height: 110px; resize: vertical; }
+.chips-row { display: flex; flex-wrap: wrap; gap: 6px; }
+.chips-row button { border: 1px solid var(--line-soft); background: var(--chip); border-radius: 999px; padding: 5px 11px; font-size: 12.5px; }
+.chips-row button[aria-pressed="true"] { border-color: var(--gold); color: var(--gold-hi); }
+.preview { font-size: 13px; color: var(--muted); }
+.preview .bubble { margin-top: 6px; background: #3478F6; color: #fff; border-radius: 16px 16px 4px 16px; padding: 9px 12px; white-space: pre-wrap; overflow-wrap: anywhere; max-width: 92%; margin-left: auto; font-size: 14px; }
+.count-line { font-size: 12px; color: var(--muted); text-align: right; font-variant-numeric: tabular-nums; }
+@media (max-width: 520px) { .brand > span { display: none; } header.top .wrap { gap: 10px; } }
+@media (max-width: 760px) { .contact { grid-template-columns: 1fr; padding-block: 24px 40px; } .nav-link { font-size: 12px; letter-spacing: .08em; } }
+/* Herbalist chat */
+.ask-fab { position: fixed; right: calc(18px + env(safe-area-inset-right, 0px)); bottom: calc(18px + env(safe-area-inset-bottom, 0px)); z-index: 30; display: inline-flex; align-items: center; gap: 10px; border: 1px solid var(--gold); background: linear-gradient(180deg, #2A1D5C, #160F3A); color: var(--gold-hi); border-radius: 999px; padding: 8px 18px 8px 8px; font-weight: 500; box-shadow: 0 0 24px rgba(199, 125, 255, .35), 0 8px 24px rgba(0,0,0,.5); }
+.ask-fab img { width: 34px; height: 34px; border-radius: 50%; }
+.ask-fab:hover { box-shadow: 0 0 30px rgba(232, 185, 84, .5), 0 8px 24px rgba(0,0,0,.5); }
+.chat { position: fixed; right: calc(18px + env(safe-area-inset-right, 0px)); bottom: calc(18px + env(safe-area-inset-bottom, 0px)); z-index: 45; width: min(400px, calc(100% - 36px)); height: min(620px, calc(100% - 100px)); display: flex; flex-direction: column; background: linear-gradient(180deg, var(--bg-2), var(--bg)); border: 1px solid var(--line); border-radius: 18px; box-shadow: var(--shadow), 0 0 40px rgba(199, 125, 255, .25); overflow: hidden; }
+.chat-head { display: flex; align-items: center; gap: 10px; padding: 12px 14px; border-bottom: 1px solid var(--line); }
+.chat-head img { width: 38px; height: 38px; border-radius: 50%; }
+.chat-head div { flex: 1; min-width: 0; }
+.chat-head b { display: block; font-family: var(--f-display); color: var(--gold-hi); font-size: 15px; letter-spacing: .04em; }
+.chat-head small { color: var(--muted); font-size: 12px; }
+.chat-log { flex: 1; overflow-y: auto; padding: 14px; display: flex; flex-direction: column; gap: 10px; }
+.msg { max-width: 88%; padding: 10px 13px; border-radius: 14px; font-size: 14px; line-height: 1.5; overflow-wrap: anywhere; }
+.msg.bot { align-self: flex-start; background: var(--surface); border: 1px solid var(--line-soft); border-bottom-left-radius: 4px; }
+.msg.me { align-self: flex-end; background: var(--gold); color: var(--gold-ink); border-bottom-right-radius: 4px; }
+.msg.bot p { margin: 0 0 6px; } .msg.bot p:last-child { margin: 0; }
+.msg.bot ul { margin: 4px 0 6px; padding-left: 18px; }
+.msg.bot strong { color: var(--gold-hi); }
+.msg.thinking { color: var(--muted); font-style: italic; }
+.msg.note { align-self: center; max-width: 100%; background: none; border: 0; color: var(--muted); font-size: 12px; text-align: center; padding: 2px 8px; }
+.added { align-self: flex-start; font-size: 12px; color: var(--ok); padding-left: 4px; }
+.suggest { display: flex; flex-wrap: wrap; gap: 6px; padding: 0 14px 10px; }
+.suggest button { border: 1px solid var(--line-soft); background: var(--chip); border-radius: 999px; padding: 5px 11px; font-size: 12.5px; color: var(--ink); }
+.suggest button:hover { border-color: var(--gold); }
+.chat-form { display: flex; gap: 8px; padding: 10px 12px 12px; border-top: 1px solid var(--line); }
+.chat-form textarea { flex: 1; min-width: 0; resize: none; background: var(--surface-solid); border: 1px solid var(--line-soft); border-radius: 12px; padding: 9px 12px; height: 42px; max-height: 120px; }
+.chat-form button { border: 0; border-radius: 12px; padding: 0 16px; font-weight: 600; background: linear-gradient(180deg, var(--gold-hi), var(--gold)); color: var(--gold-ink); }
+.chat-form button.stop { background: var(--chip); color: var(--ink); border: 1px solid var(--line); }
+.chat-fine { font-size: 11px; color: var(--muted); padding: 0 14px 10px; margin: 0; }
+@media (max-width: 520px) { .chat { right: 0; bottom: 0; width: 100%; height: calc(100% - env(safe-area-inset-top, 0px)); border-radius: 18px 18px 0 0; padding-bottom: env(safe-area-inset-bottom, 0px); } .ask-fab span { display: none; } .ask-fab { padding: 8px; } }
+</style>
+
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="#shop" aria-label="Healing Herb Haven home">
+      <img src="logo.jpg" alt="">
+      <span><b class="gold">Healing Herb Haven</b><small>Natural wellness for a brighter you</small></span>
+    </a>
+    <a class="nav-link" id="navShop" href="#shop">Shop</a>
+    <a class="nav-link" id="navContact" href="#contact">Contact</a>
+    <button class="cart-btn" id="openCart" aria-label="Open basket">Basket <span class="count" id="cartCount">0</span></button>
+  </div>
+</header>
+
+<main id="shop">
+  <section class="wrap intro">
+    <img class="logo" src="logo.jpg" alt="Healing Herb Haven logo: herbs, flowers and a glowing leaf under a starry sky with moon phases">
+    <div>
+      <span class="label">Herbs ✦ Teas ✦ Spices ✦ Wellness</span>
+      <h1><span class="gold">Natural wellness for a brighter you</span><span class="script">from the Haven</span></h1>
+      <p>Organic leaves, flowers and roots from growers we know by name. Every bag is lot-numbered, weighed by hand and sealed fresh.</p>
+      <ul class="promises">
+        <li><b>Organic</b>Certified organic or wild-harvested</li>
+        <li><b>Lot-coded</b>Origin and harvest date on every bag</li>
+        <li><b>Free over $50</b>Free shipping on larger orders</li>
+      </ul>
+    </div>
+  </section>
+
+  <div class="wrap moons" aria-hidden="true"><span class="m1"></span><span class="m2"></span><span class="full"></span><span class="m3"></span><span class="m4"></span></div>
+
+  <section class="wrap">
+    <div class="controls">
+      <div class="chips" id="chips" role="group" aria-label="Filter by category"></div>
+      <label class="search" for="q"><span aria-hidden="true">⌕</span><input id="q" type="search" placeholder="Search herbs or Latin names" autocomplete="off"></label>
+      <select class="sort" id="sort" aria-label="Sort products">
+        <option value="featured">Featured</option>
+        <option value="az">Name A–Z</option>
+        <option value="low">Price: low to high</option>
+        <option value="high">Price: high to low</option>
+      </select>
+    </div>
+    <div class="grid" id="grid"></div>
+  </section>
+
+  <div class="wrap moons" aria-hidden="true"><span class="m1"></span><span class="m2"></span><span class="full"></span><span class="m3"></span><span class="m4"></span></div>
+
+  <section class="wrap story">
+    <div><h2>How we source</h2><p>We buy direct from family farms in Oregon, Bulgaria, Egypt and India, and test every lot for identity and purity before it reaches our shelves.</p></div>
+    <div><h2>How we pack</h2><p>Herbs are weighed to order and sealed in resealable, light-blocking kraft pouches to keep their color, aroma and potency.</p></div>
+    <div><h2>How to store</h2><p>Keep herbs cool, dark and dry. Leaves and flowers are best within a year; roots and powders keep up to two.</p></div>
+  </section>
+</main>
+
+<main id="contactPage" hidden>
+  <section class="wrap contact">
+    <div>
+      <span class="label">Contact ✦ Text us</span>
+      <h1><span class="gold">We'd love to hear from you</span><span class="script">send us a text</span></h1>
+      <p class="lead">Questions about an herb, a custom blend or your order? Text us and a real person from the Haven replies, usually within a few hours during business hours.</p>
+      <div class="phone-card">
+        <span class="label">Text or call</span>
+        <div class="phone-num" id="phoneNum">(760) 916-2700</div>
+        <div class="phone-actions">
+          <a class="main" id="smsLink" href="sms:+17609162700">Open in Messages</a>
+          <a href="tel:+17609162700">Call us</a>
+          <button type="button" id="copyNum">Copy number</button>
+        </div>
+        <ul class="hours">
+          <li><span>Monday – Friday</span><span>9:00 am – 6:00 pm</span></li>
+          <li><span>Saturday</span><span>10:00 am – 4:00 pm</span></li>
+          <li><span>Sunday</span><span>Closed</span></li>
+        </ul>
+      </div>
+    </div>
+
+    <form class="sms-card" id="smsForm" novalidate>
+      <h2>Write your text</h2>
+      <div class="field"><label for="s-name">Your name</label><input id="s-name" autocomplete="name" placeholder="e.g. Maria"></div>
+      <div class="field"><label>What's it about?</label>
+        <div class="chips-row" id="smsTopics">
+          <button type="button" aria-pressed="true">Product question</button>
+          <button type="button" aria-pressed="false">My order</button>
+          <button type="button" aria-pressed="false">Custom blend</button>
+          <button type="button" aria-pressed="false">Wholesale</button>
+        </div>
+      </div>
+      <div class="field"><label for="s-order">Order number (optional)</label><input id="s-order" placeholder="HHH-123456"></div>
+      <div class="field"><label for="s-msg">Message</label><textarea id="s-msg" maxlength="600" placeholder="Hi! Do you have chamomile in 1 lb bags?"></textarea><div class="count-line" id="smsCount">0 / 600</div></div>
+      <div class="preview">Your text will read:<div class="bubble" id="smsPreview"></div></div>
+      <p class="notice" id="smsStatus" hidden></p>
+      <div class="phone-actions">
+        <a class="main" id="smsSend" href="sms:+17609162700">Open text in Messages</a>
+        <button type="button" id="copyMsg">Copy message</button>
+      </div>
+      <p class="notice">Tapping the button opens your phone's Messages app with this text filled in. Your message is sent only after you press send there. If nothing opens, copy the message and text it to <b>(760) 916-2700</b>.</p>
+    </form>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <p class="disclaimer">These statements have not been evaluated by the Food and Drug Administration. Our products are not intended to diagnose, treat, cure or prevent any disease. Ask your healthcare provider before using herbs if you are pregnant, nursing or taking medication.</p>
+    <div><span class="tagline">Herbs ✦ Teas ✦ Spices ✦ Wellness</span> · Text us at (760) 916-2700 · <a href="#contact" style="color:var(--gold-hi)">Contact</a> · © 2026 Healing Herb Haven</div>
+  </div>
+</footer>
+
+<div class="scrim" id="scrim" hidden></div>
+<aside class="drawer closed" id="drawer" aria-label="Basket" aria-hidden="true">
+  <div class="drawer-head">
+    <h2 id="drawerTitle">Your basket</h2>
+    <button class="icon-btn" id="closeCart" aria-label="Close basket">×</button>
+  </div>
+  <div class="drawer-body" id="drawerBody"></div>
+  <div class="drawer-foot" id="drawerFoot"></div>
+</aside>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<button class="ask-fab" id="askFab" hidden aria-label="Ask the Herbalist"><img src="logo.jpg" alt=""><span>Ask the Herbalist</span></button>
+<section class="chat" id="chat" hidden aria-label="Ask the Herbalist chat">
+  <div class="chat-head">
+    <img src="logo.jpg" alt="">
+    <div><b>The Herbalist</b><small>AI helper · answers about our herbs</small></div>
+    <button class="icon-btn" id="chatClose" aria-label="Close chat">×</button>
+  </div>
+  <div class="chat-log" id="chatLog" aria-live="polite"></div>
+  <div class="suggest" id="chatSuggest">
+    <button>What tea helps me unwind at night?</button>
+    <button>How do I make elderberry syrup?</button>
+    <button>Which herbs are good for cooking?</button>
+    <button>How should I store dried herbs?</button>
+  </div>
+  <form class="chat-form" id="chatForm">
+    <label for="chatInput" hidden>Your question</label>
+    <textarea id="chatInput" rows="1" placeholder="Ask about herbs, teas or your order…"></textarea>
+    <button type="submit" id="chatSend">Ask</button>
+  </form>
+  <p class="chat-fine">AI answers can be wrong and aren't medical advice. Check with your healthcare provider before using herbs for health reasons.</p>
+</section>
+
+<script>
+const SHIPPING = 6.95, FREE_AT = 50;
+const SIZES = [
+  { id: "1oz", label: "1 oz", mult: 1 },
+  { id: "4oz", label: "4 oz", mult: 3.4 },
+  { id: "1lb", label: "1 lb", mult: 11 },
+];
+const CATS = [
+  { id: "all", label: "All herbs" },
+  { id: "tea", label: "Tea herbs" },
+  { id: "culinary", label: "Culinary" },
+  { id: "wellness", label: "Wellness" },
+  { id: "skin", label: "Skin & bath" },
+];
+// shape: leaf | flower | root | berry | powder
+const PRODUCTS = [
+  { id: "chamomile", name: "Chamomile Flowers", latin: "Matricaria chamomilla", cat: "tea", origin: "Egypt", cut: "Whole flower", price: 4.5, color: "#D9A928", shape: "flower", tag: "Bestseller", desc: "Sweet, apple-scented blossoms for a calming evening cup." },
+  { id: "peppermint", name: "Peppermint Leaf", latin: "Mentha × piperita", cat: "tea", origin: "Oregon, USA", cut: "Cut & sifted", price: 3.25, color: "#3F7A4A", shape: "leaf", desc: "Bright, cooling leaf. A classic after-dinner tea." },
+  { id: "lavender", name: "Lavender Buds", latin: "Lavandula angustifolia", cat: "skin", origin: "Provence, France", cut: "Whole bud", price: 5.0, color: "#7D6BB0", shape: "flower", tag: "Bestseller", desc: "Fragrant buds for sachets, bath soaks and baking." },
+  { id: "calendula", name: "Calendula Petals", latin: "Calendula officinalis", cat: "skin", origin: "Egypt", cut: "Whole petal", price: 5.75, color: "#E07A1F", shape: "flower", desc: "Golden petals prized for infused oils and salves." },
+  { id: "elderberry", name: "Elderberries", latin: "Sambucus nigra", cat: "wellness", origin: "Bulgaria", cut: "Whole berry", price: 4.75, color: "#4A2346", shape: "berry", tag: "Seasonal", desc: "Deep purple berries for syrups and winter tonics." },
+  { id: "ashwagandha", name: "Ashwagandha Root", latin: "Withania somnifera", cat: "wellness", origin: "Rajasthan, India", cut: "Powder", price: 3.9, color: "#A88A63", shape: "powder", desc: "Earthy root powder for lattes and smoothies." },
+  { id: "turmeric", name: "Turmeric Root", latin: "Curcuma longa", cat: "culinary", origin: "Kerala, India", cut: "Powder", price: 2.8, color: "#D98A0B", shape: "powder", desc: "Vivid, warm root powder for curries and golden milk." },
+  { id: "rosemary", name: "Rosemary Leaf", latin: "Salvia rosmarinus", cat: "culinary", origin: "Morocco", cut: "Whole leaf", price: 2.4, color: "#4E6E58", shape: "leaf", desc: "Resinous needles for roasts, breads and hair rinses." },
+  { id: "hibiscus", name: "Hibiscus Flowers", latin: "Hibiscus sabdariffa", cat: "tea", origin: "Nigeria", cut: "Cut calyx", price: 3.1, color: "#B1243F", shape: "flower", desc: "Tart, ruby-red tea that's lovely iced." },
+  { id: "lemonbalm", name: "Lemon Balm", latin: "Melissa officinalis", cat: "tea", origin: "Bulgaria", cut: "Cut & sifted", price: 4.2, color: "#7FA03B", shape: "leaf", desc: "Soft, lemony leaf for a gentle, uplifting tea." },
+  { id: "nettle", name: "Nettle Leaf", latin: "Urtica dioica", cat: "wellness", origin: "Bulgaria", cut: "Cut & sifted", price: 2.95, color: "#35603A", shape: "leaf", desc: "Mineral-rich green leaf for daily infusions." },
+  { id: "rose", name: "Rose Petals", latin: "Rosa centifolia", cat: "skin", origin: "Pakistan", cut: "Whole petal", price: 6.25, color: "#C2587A", shape: "flower", desc: "Fragrant pink petals for teas, baths and toners." },
+  { id: "echinacea", name: "Echinacea Herb", latin: "Echinacea purpurea", cat: "wellness", origin: "Oregon, USA", cut: "Cut & sifted", price: 4.6, color: "#8C4F86", shape: "flower", desc: "Aerial parts of purple coneflower for seasonal teas." },
+  { id: "thyme", name: "Thyme Leaf", latin: "Thymus vulgaris", cat: "culinary", origin: "Spain", cut: "Whole leaf", price: 2.65, color: "#6A7D4E", shape: "leaf", desc: "Savory little leaves for soups, stews and steams." },
+  { id: "ginger", name: "Ginger Root", latin: "Zingiber officinale", cat: "culinary", origin: "Peru", cut: "Cut & sifted", price: 3.35, color: "#C99A4B", shape: "root", desc: "Spicy, warming root for chai, broths and baking." },
+  { id: "licorice", name: "Licorice Root", latin: "Glycyrrhiza glabra", cat: "tea", origin: "Uzbekistan", cut: "Cut & sifted", price: 3.0, color: "#9B6B3C", shape: "root", desc: "Naturally sweet root to round out tea blends." },
+];
+
+const SHAPES = {
+  leaf: `<path d="M50 88 C50 60 50 40 50 12" stroke="#fff" stroke-width="2.4" fill="none"/><path d="M50 40 C34 38 24 28 22 14 C36 14 48 24 50 40Z" fill="#fff" opacity=".92"/><path d="M50 58 C66 56 76 46 78 32 C64 32 52 42 50 58Z" fill="#fff" opacity=".78"/><path d="M50 74 C38 73 30 66 28 56 C39 56 48 63 50 74Z" fill="#fff" opacity=".62"/>`,
+  flower: `<g fill="#fff">${[0,60,120,180,240,300].map(a=>`<ellipse cx="50" cy="28" rx="11" ry="20" transform="rotate(${a} 50 50)" opacity=".85"/>`).join("")}</g><circle cx="50" cy="50" r="11" fill="#fff"/><circle cx="50" cy="50" r="6" fill="currentColor" opacity=".5"/>`,
+  root: `<path d="M50 12 C46 30 54 40 48 56 C44 68 36 74 30 88 M48 56 C56 66 64 70 70 86 M50 38 C40 42 34 46 26 50 M52 46 C62 46 70 42 76 36" stroke="#fff" stroke-width="5" stroke-linecap="round" fill="none" opacity=".9"/>`,
+  berry: `<path d="M50 10 C50 22 46 30 40 36 M50 22 C56 28 60 34 62 40" stroke="#fff" stroke-width="2" fill="none"/>${[[40,46],[60,48],[50,60],[36,64],[64,66],[48,76],[30,52],[70,56]].map(([x,y])=>`<circle cx="${x}" cy="${y}" r="9" fill="#fff" opacity=".85"/>`).join("")}`,
+  powder: `<path d="M14 80 C24 54 40 42 50 40 C60 42 76 54 86 80Z" fill="#fff" opacity=".88"/><g fill="#fff" opacity=".7">${[[26,30],[36,22],[62,24],[72,32],[50,18],[80,46],[20,46]].map(([x,y])=>`<circle cx="${x}" cy="${y}" r="2.6"/>`).join("")}</g>`,
+};
+
+const money = n => "$" + n.toFixed(2);
+const priceFor = (p, sizeId) => {
+  const s = SIZES.find(s => s.id === sizeId);
+  return Math.round(p.price * s.mult * 4) / 4 - (s.mult > 1 ? 0.05 : 0);
+};
+const lotCode = p => "LOT " + (p.id.slice(0, 3).toUpperCase()) + "-26" + String((p.id.length * 7) % 12 + 1).padStart(2, "0");
+
+const store = {
+  get(k, d) { try { const v = localStorage.getItem(k); return v ? JSON.parse(v) : d; } catch { return d; } },
+  set(k, v) { try { localStorage.setItem(k, JSON.stringify(v)); } catch {} },
+};
+
+const state = {
+  cat: "all", q: "", sort: "featured",
+  size: {},                               // productId -> sizeId
+  cart: store.get("hhh-cart", []),
+  view: "cart",                           // cart | checkout | done
+};
+
+const $ = id => document.getElementById(id);
+
+function renderChips() {
+  $("chips").innerHTML = CATS.map(c => {
+    const n = c.id === "all" ? PRODUCTS.length : PRODUCTS.filter(p => p.cat === c.id).length;
+    return `<button class="chip" data-cat="${c.id}" aria-pressed="${state.cat === c.id}">${c.label} <span class="label">${n}</span></button>`;
+  }).join("");
+}
+
+function renderGrid() {
+  const q = state.q.trim().toLowerCase();
+  let list = PRODUCTS.filter(p => (state.cat === "all" || p.cat === state.cat) &&
+    (!q || (p.name + " " + p.latin + " " + p.desc).toLowerCase().includes(q)));
+  if (state.sort === "az") list = [...list].sort((a, b) => a.name.localeCompare(b.name));
+  if (state.sort === "low") list = [...list].sort((a, b) => a.price - b.price);
+  if (state.sort === "high") list = [...list].sort((a, b) => b.price - a.price);
+
+  if (!list.length) {
+    $("grid").innerHTML = `<div class="empty">No herbs match “${escapeHtml(state.q)}”. Try a common name like <em>mint</em> or a Latin genus like <em>Mentha</em>.</div>`;
+    return;
+  }
+  $("grid").innerHTML = list.map(p => {
+    const sel = state.size[p.id] || "1oz";
+    return `<article class="card">
+      <div class="swatch" style="--c:${p.color};color:${p.color}">
+        <span class="lot">${lotCode(p)}</span>
+        ${p.tag ? `<span class="tag">${p.tag}</span>` : ""}
+        <svg viewBox="0 0 100 100" aria-hidden="true">${SHAPES[p.shape]}</svg>
+      </div>
+      <div class="card-body">
+        <div><h3>${p.name}</h3><div class="latin">${p.latin}</div></div>
+        <div class="meta"><span>${p.origin}</span><span>${p.cut}</span></div>
+        <p class="desc">${p.desc}</p>
+        <div class="sizes" role="group" aria-label="Choose size for ${p.name}">
+          ${SIZES.map(s => `<button class="size" data-id="${p.id}" data-size="${s.id}" aria-pressed="${sel === s.id}">${s.label}<b>${money(priceFor(p, s.id))}</b></button>`).join("")}
+        </div>
+        <button class="add" data-add="${p.id}">Add ${SIZES.find(s => s.id === sel).label} to basket</button>
+      </div>
+    </article>`;
+  }).join("");
+}
+
+function escapeHtml(s) { return s.replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c])); }
+
+function totals() {
+  const sub = state.cart.reduce((t, l) => t + priceFor(PRODUCTS.find(p => p.id === l.id), l.size) * l.qty, 0);
+  const ship = sub === 0 || sub >= FREE_AT ? 0 : SHIPPING;
+  return { sub, ship, total: sub + ship };
+}
+
+function saveCart() { store.set("hhh-cart", state.cart); }
+
+function renderCart() {
+  const count = state.cart.reduce((t, l) => t + l.qty, 0);
+  $("cartCount").textContent = count;
+  const { sub, ship, total } = totals();
+  const body = $("drawerBody"), foot = $("drawerFoot");
+
+  if (state.view === "done") return;
+
+  if (state.view === "checkout") {
+    $("drawerTitle").textContent = "Checkout";
+    body.innerHTML = `
+      <form class="checkout" id="checkoutForm" novalidate>
+        <div class="field"><label for="c-name">Full name</label><input id="c-name" name="name" required autocomplete="name" placeholder=" "></div>
+        <div class="field"><label for="c-email">Email</label><input id="c-email" name="email" type="email" required autocomplete="email" placeholder=" "></div>
+        <div class="field"><label for="c-addr">Street address</label><input id="c-addr" name="addr" required autocomplete="street-address" placeholder=" "></div>
+        <div class="two">
+          <div class="field"><label for="c-city">City</label><input id="c-city" name="city" required autocomplete="address-level2" placeholder=" "></div>
+          <div class="field"><label for="c-zip">ZIP code</label><input id="c-zip" name="zip" required pattern="[0-9]{5}" inputmode="numeric" autocomplete="postal-code" placeholder=" "></div>
+        </div>
+        <div class="field"><label for="c-ship">Delivery</label>
+          <select id="c-ship" name="ship"><option value="std">Standard, 3–5 business days</option><option value="exp">Express, 1–2 business days (+$9.00)</option></select>
+        </div>
+        <p class="notice">You'll text your order to us at (760) 916-2700. We'll text back to confirm and send payment details. Nothing is charged on this site.</p>
+        <p class="notice" id="formError" hidden></p>
+      </form>`;
+    const exp = () => $("c-ship") && $("c-ship").value === "exp" ? 9 : 0;
+    const paint = () => {
+      foot.innerHTML = `
+        <div class="row"><span>Subtotal</span><span>${money(sub)}</span></div>
+        <div class="row"><span>Shipping</span><span>${money(ship + exp())}</span></div>
+        <div class="row total"><span>Total</span><span>${money(total + exp())}</span></div>
+        <button class="primary" type="submit" form="checkoutForm">Review order text</button>
+        <button class="secondary" id="backToCart">Back to basket</button>`;
+    };
+    paint();
+    $("c-ship").addEventListener("change", paint);
+    return;
+  }
+
+  $("drawerTitle").textContent = "Your basket";
+  if (!state.cart.length) {
+    body.innerHTML = `<div class="empty" style="padding:40px 0">Your basket is empty. Add a few herbs to get started.</div>`;
+    foot.innerHTML = `<button class="secondary" id="keepShopping">Browse herbs</button>`;
+    return;
+  }
+  const left = Math.max(0, FREE_AT - sub);
+  body.innerHTML = `
+    <div class="ship-meter">${left > 0 ? `Add <b>${money(left)}</b> more for free shipping.` : `You've unlocked <b>free shipping</b>.`}
+      <div class="bar"><i style="width:${Math.min(100, sub / FREE_AT * 100)}%"></i></div></div>
+    ${state.cart.map((l, i) => {
+      const p = PRODUCTS.find(p => p.id === l.id), s = SIZES.find(s => s.id === l.size);
+      return `<div class="line">
+        <div class="dot" style="background:${p.color}"></div>
+        <div style="min-width:0"><div class="name">${p.name}</div><div class="sub">${s.label} · ${money(priceFor(p, l.size))} each</div>
+          <div class="qty"><button data-dec="${i}" aria-label="Decrease quantity">−</button><span>${l.qty}</span><button data-inc="${i}" aria-label="Increase quantity">+</button></div></div>
+        <div><div class="price">${money(priceFor(p, l.size) * l.qty)}</div><button class="remove" data-rm="${i}">Remove</button></div>
+      </div>`;
+    }).join("")}`;
+  foot.innerHTML = `
+    <div class="row"><span>Subtotal</span><span>${money(sub)}</span></div>
+    <div class="row"><span>Shipping</span><span>${ship ? money(ship) : "Free"}</span></div>
+    <div class="row total"><span>Total</span><span>${money(total)}</span></div>
+    <button class="primary" id="toCheckout">Check out</button>`;
+}
+
+function openCart() {
+  $("drawer").classList.remove("closed"); $("drawer").setAttribute("aria-hidden", "false");
+  $("scrim").hidden = false;
+  if (state.view === "done") { state.view = "cart"; }
+  renderCart();
+  $("closeCart").focus();
+}
+function closeCart() {
+  $("drawer").classList.add("closed"); $("drawer").setAttribute("aria-hidden", "true");
+  $("scrim").hidden = true;
+  if (state.view === "done") { state.view = "cart"; renderCart(); }
+}
+
+let toastTimer;
+function toast(msg) {
+  const t = $("toast"); t.textContent = msg; t.classList.add("show");
+  clearTimeout(toastTimer); toastTimer = setTimeout(() => t.classList.remove("show"), 1800);
+}
+
+// Events
+$("chips").addEventListener("click", e => {
+  const b = e.target.closest("[data-cat]"); if (!b) return;
+  state.cat = b.dataset.cat; renderChips(); renderGrid();
+});
+$("q").addEventListener("input", e => { state.q = e.target.value; renderGrid(); });
+$("sort").addEventListener("change", e => { state.sort = e.target.value; renderGrid(); });
+
+$("grid").addEventListener("click", e => {
+  const s = e.target.closest("[data-size]");
+  if (s) { state.size[s.dataset.id] = s.dataset.size; renderGrid(); return; }
+  const a = e.target.closest("[data-add]");
+  if (a) {
+    const id = a.dataset.add, size = state.size[id] || "1oz";
+    const line = state.cart.find(l => l.id === id && l.size === size);
+    line ? line.qty++ : state.cart.push({ id, size, qty: 1 });
+    saveCart(); renderCart();
+    toast(`Added ${SIZES.find(x => x.id === size).label} ${PRODUCTS.find(p => p.id === id).name}`);
+  }
+});
+
+$("openCart").addEventListener("click", openCart);
+$("closeCart").addEventListener("click", closeCart);
+$("scrim").addEventListener("click", closeCart);
+document.addEventListener("keydown", e => { if (e.key === "Escape" && !$("drawer").classList.contains("closed")) closeCart(); });
+
+$("drawer").addEventListener("click", e => {
+  const t = e.target;
+  if (t.dataset.inc) { state.cart[+t.dataset.inc].qty++; }
+  else if (t.dataset.dec) { const l = state.cart[+t.dataset.dec]; l.qty--; if (l.qty < 1) state.cart.splice(+t.dataset.dec, 1); }
+  else if (t.dataset.rm) { state.cart.splice(+t.dataset.rm, 1); }
+  else if (t.id === "toCheckout") { state.view = "checkout"; renderCart(); $("c-name").focus(); return; }
+  else if (t.id === "backToCart") { state.view = "cart"; renderCart(); return; }
+  else if (t.id === "keepShopping") { closeCart(); return; }
+  else return;
+  saveCart(); renderCart();
+});
+
+$("drawer").addEventListener("submit", e => {
+  e.preventDefault();
+  const f = e.target;
+  const bad = [...f.querySelectorAll("input")].find(i => !i.checkValidity());
+  if (bad) {
+    const msg = $("formError");
+    msg.hidden = false;
+    msg.textContent = bad.id === "c-zip" ? "Enter a 5-digit ZIP code." :
+      bad.type === "email" ? "Enter an email address like name@example.com." :
+      `Fill in ${f.querySelector(`label[for="${bad.id}"]`).textContent.toLowerCase()}.`;
+    bad.focus(); return;
+  }
+  const express = $("c-ship").value === "exp";
+  const { sub, ship, total } = totals();
+  const shipping = ship + (express ? 9 : 0);
+  const orderNo = "HHH-" + Math.floor(100000 + Math.random() * 900000);
+  const v = id => $(id).value.trim();
+  const items = state.cart.map(l => {
+    const p = PRODUCTS.find(p => p.id === l.id), s = SIZES.find(s => s.id === l.size);
+    return `- ${l.qty} x ${p.name} ${s.label} = ${money(priceFor(p, l.size) * l.qty)}`;
+  });
+  const orderText = [
+    `New order ${orderNo} for Healing Herb Haven`,
+    ...items,
+    `Subtotal ${money(sub)}, shipping ${shipping ? money(shipping) : "free"} (${express ? "express" : "standard"}), total ${money(total + (express ? 9 : 0))}`,
+    `Ship to: ${v("c-name")}, ${v("c-addr")}, ${v("c-city")} ${v("c-zip")}`,
+    `Email: ${v("c-email")}`,
+  ].join("\n");
+  state.view = "done";
+  $("drawerTitle").textContent = "Send your order";
+  $("drawerBody").innerHTML = `<div class="confirm">
+    <span class="order-no">${orderNo}</span>
+    <p style="color:var(--muted);margin:0;max-width:36ch">Your order isn't placed until you text it to us. Tap the button to open Messages, then press send. We'll text back to confirm and arrange payment.</p>
+    <div class="preview" style="width:100%;text-align:left"><div class="bubble" id="orderText"></div></div>
+  </div>`;
+  $("orderText").textContent = orderText;
+  $("drawerFoot").innerHTML = `
+    <a class="primary" style="text-align:center;text-decoration:none" href="sms:${SHOP_PHONE}?&body=${encodeURIComponent(orderText)}">Text order to (760) 916-2700</a>
+    <button class="secondary" id="copyOrder">Copy order text</button>
+    <button class="secondary" id="sentOrder">I sent it, clear my basket</button>`;
+  $("copyOrder").onclick = () => copyText(orderText, "Order copied", $("orderText"));
+  $("sentOrder").onclick = () => { state.cart = []; saveCart(); state.view = "cart"; renderCart(); closeCart(); toast("Thanks! We'll text you back soon."); };
+});
+
+
+// ---- Ask the Herbalist (Claude) ----
+const catalogText = PRODUCTS.map(p =>
+  `- id "${p.id}": ${p.name} (${p.latin}), ${CATS.find(c => c.id === p.cat).label}, from ${p.origin}, ${p.cut}. ` +
+  SIZES.map(s => `${s.label} ${money(priceFor(p, s.id))}`).join(" / ") + `. ${p.desc}`
+).join("\n");
+
+const RULES = `You are "The Herbalist", the friendly shop assistant for Healing Herb Haven, an online store selling dried organic herbs, teas and spices. Tagline: "Natural wellness for a brighter you."
+
+Answer shoppers' questions about our herbs: flavor, traditional uses, how to brew or cook with them, storage, sizes and prices, and which product fits what they want. Recommend products from this catalog only, by name, with size and price when helpful:
+${catalogText}
+
+Shop policies: herbs are weighed to order and ship in resealable light-blocking pouches; standard shipping is $6.95 and free over $50; express is +$9.00 (1-2 business days); standard is 3-5 business days. Leaves and flowers keep best within a year, roots and powders up to two.
+
+Safety rules: you are not a doctor. Describe traditional or common uses with phrases like "traditionally used for", never promise to treat, cure or prevent a disease. If someone is pregnant, nursing, giving herbs to a child, taking medication, or describes a serious or urgent symptom, tell them to talk to a healthcare provider first (urgent symptoms: seek medical care now). Mention known cautions briefly when relevant (for example licorice root and high blood pressure, or herb-drug interactions).
+
+Style: warm and concise, usually under 120 words. Use short paragraphs, **bold** product names, and "- " bullets for lists. If asked something unrelated to herbs, wellness or this shop, gently steer back. If you don't know (for example an order's status), say so and suggest contacting the shop.`;
+
+const chatTurns = [];
+let chatCtl = null, sampleFn = null, canUseTools = false;
+
+function mdLite(s) {
+  const esc = escapeHtml(s).replace(/\*\*(.+?)\*\*/g, "<strong>$1</strong>");
+  const out = []; let list = null;
+  for (const raw of esc.split("\n")) {
+    const line = raw.trim();
+    if (/^[-•*] /.test(line)) { (list ||= []).push(`<li>${line.slice(2)}</li>`); continue; }
+    if (list) { out.push(`<ul>${list.join("")}</ul>`); list = null; }
+    if (line) out.push(`<p>${line}</p>`);
+  }
+  if (list) out.push(`<ul>${list.join("")}</ul>`);
+  return out.join("");
+}
+
+function addMsg(cls, html) {
+  const el = document.createElement("div");
+  el.className = "msg " + cls; el.innerHTML = html;
+  $("chatLog").append(el); $("chatLog").scrollTop = $("chatLog").scrollHeight;
+  return el;
+}
+
+const chatTools = [{
+  name: "add_to_basket",
+  description: "Adds a product to the shopper's basket. Use ONLY when the shopper clearly asks you to add something. Returns the updated basket summary.",
+  inputSchema: { type: "object", properties: {
+    id: { type: "string", description: "Product id from the catalog, e.g. \"chamomile\"" },
+    size: { type: "string", enum: ["1oz", "4oz", "1lb"] },
+    qty: { type: "integer", minimum: 1, maximum: 10 },
+  }, required: ["id", "size"] },
+  execute(input) {
+    const p = PRODUCTS.find(p => p.id === String(input.id));
+    const s = SIZES.find(s => s.id === String(input.size));
+    if (!p || !s) throw new Error("Unknown product id or size.");
+    const qty = Math.min(10, Math.max(1, Math.round(Number(input.qty) || 1)));
+    const line = state.cart.find(l => l.id === p.id && l.size === s.id);
+    line ? (line.qty += qty) : state.cart.push({ id: p.id, size: s.id, qty });
+    saveCart(); renderCart();
+    const note = document.createElement("div");
+    note.className = "added"; note.textContent = `✓ Added ${qty} × ${s.label} ${p.name} to your basket`;
+    $("chatLog").append(note);
+    return { added: `${qty} x ${s.label} ${p.name}`, basketSubtotal: money(totals().sub) };
+  },
+}];
+
+const errorCopy = {
+  rate_limited: "Too many questions at once. Wait a minute, then ask again.",
+  session_expired: "Your Claude sign-in expired. Sign in again to keep chatting.",
+  refused: "I can't help with that one. Try asking about our herbs, teas or spices.",
+  empty_completion: "I didn't come up with an answer. Try rewording your question.",
+  prompt_too_large: "This chat got too long. Close it and start a new one.",
+};
+
+async function askHerbalist(question) {
+  if (!sampleFn || chatCtl) return;
+  $("chatSuggest").hidden = true;
+  addMsg("me", escapeHtml(question));
+  chatTurns.push({ role: "user", content: question });
+  while (chatTurns.length > 16) chatTurns.splice(0, 2);   // keep recent turns, RULES always stays
+  const bubble = addMsg("bot thinking", "Thinking…");
+  chatCtl = new AbortController();
+  $("chatSend").textContent = "Stop"; $("chatSend").classList.add("stop");
+  const opts = {
+    cache: false, modelTier: "quick", signal: chatCtl.signal,
+    onText: ({ text }) => { bubble.classList.remove("thinking"); bubble.innerHTML = mdLite(text); $("chatLog").scrollTop = $("chatLog").scrollHeight; },
+  };
+  if (canUseTools) { delete opts.cache; opts.tools = chatTools; }
+  try {
+    const { text, truncated } = await sampleFn([{ role: "user", content: RULES }, ...chatTurns], opts);
+    bubble.classList.remove("thinking"); bubble.innerHTML = mdLite(text);
+    chatTurns.push({ role: "assistant", content: text });
+    if (truncated) addMsg("note", "That answer was cut short. Ask a narrower question for the rest.");
+  } catch (e) {
+    chatTurns.pop();
+    if (e.code === "refused" || !e.text) bubble.remove(); else { bubble.classList.remove("thinking"); bubble.innerHTML = mdLite(e.text); }
+    if (["not_granted", "sampling_disabled", "not_declared", "capability_disabled", "capability_removed"].includes(e.code)) {
+      addMsg("note", "The Herbalist isn't available here. You can still browse and shop as usual.");
+      $("chatForm").hidden = true;
+    } else if (e.code !== "cancelled") {
+      addMsg("note", errorCopy[e.code] || "Something went wrong reaching the Herbalist. Try again in a moment.");
+    }
+  } finally {
+    chatCtl = null; $("chatSend").textContent = "Ask"; $("chatSend").classList.remove("stop");
+  }
+}
+
+function openChat() {
+  $("chat").hidden = false; $("askFab").hidden = true;
+  if (!$("chatLog").children.length) addMsg("bot", mdLite("Hello, and welcome to the Haven ✦ I can help you choose herbs, explain how to brew or cook with them, and add things to your basket. What are you looking for today?"));
+  $("chatInput").focus();
+}
+function closeChat() { chatCtl?.abort(); $("chat").hidden = true; $("askFab").hidden = false; }
+
+$("askFab").addEventListener("click", openChat);
+$("chatClose").addEventListener("click", closeChat);
+$("chatSuggest").addEventListener("click", e => { if (e.target.tagName === "BUTTON") askHerbalist(e.target.textContent); });
+$("chatForm").addEventListener("submit", e => {
+  e.preventDefault();
+  if (chatCtl) { chatCtl.abort(); return; }
+  const q = $("chatInput").value.trim(); if (!q) return;
+  $("chatInput").value = ""; askHerbalist(q);
+});
+$("chatInput").addEventListener("keydown", e => { if (e.key === "Enter" && !e.shiftKey) { e.preventDefault(); $("chatForm").requestSubmit(); } });
+
+(async () => {
+  try {
+    sampleFn = window.claude ? await window.claude.use("sample") : null;
+    if (!sampleFn) return;                                  // no Claude here: the shop works without the chat
+    const lim = await sampleFn.limits().catch(() => null);
+    canUseTools = !!lim?.tools;
+    $("askFab").hidden = false;
+  } catch {}
+})();
+
+// ---- Contact page ----
+const SHOP_PHONE = "+17609162700";
+let smsTopic = "Product question";
+
+function smsBody() {
+  const name = $("s-name").value.trim(), order = $("s-order").value.trim(), msg = $("s-msg").value.trim();
+  return [`Hi Healing Herb Haven${name ? `, this is ${name}` : ""}.`, `Topic: ${smsTopic}${order ? ` (order ${order})` : ""}`, msg].filter(Boolean).join("\n");
+}
+function paintSms() {
+  const body = smsBody();
+  $("smsPreview").textContent = body;
+  $("smsCount").textContent = `${$("s-msg").value.length} / 600`;
+  // iOS and Android both accept "?&body=" after the number
+  $("smsSend").href = `sms:${SHOP_PHONE}?&body=${encodeURIComponent(body)}`;
+}
+async function copyText(text, okMsg, fallbackEl) {
+  try { await navigator.clipboard.writeText(text); toast(okMsg); }
+  catch {
+    const r = document.createRange(); r.selectNodeContents(fallbackEl);
+    const sel = getSelection(); sel.removeAllRanges(); sel.addRange(r);
+    toast("Selected. Press copy on your keyboard.");
+  }
+}
+["s-name", "s-order", "s-msg"].forEach(id => $(id).addEventListener("input", paintSms));
+$("smsTopics").addEventListener("click", e => {
+  const b = e.target.closest("button"); if (!b) return;
+  [...$("smsTopics").children].forEach(x => x.setAttribute("aria-pressed", x === b));
+  smsTopic = b.textContent; paintSms();
+});
+$("smsSend").addEventListener("click", e => {
+  const st = $("smsStatus");
+  if (!$("s-msg").value.trim()) { e.preventDefault(); st.hidden = false; st.textContent = "Write a message first, then open it in Messages."; $("s-msg").focus(); return; }
+  st.hidden = false; st.textContent = "Opening Messages… Press send there to text us. If nothing opened, use Copy message.";
+});
+$("copyMsg").addEventListener("click", () => copyText(smsBody(), "Message copied", $("smsPreview")));
+$("copyNum").addEventListener("click", () => copyText("(760) 916-2700", "Number copied", $("phoneNum")));
+$("smsForm").addEventListener("submit", e => e.preventDefault());
+paintSms();
+
+function route() {
+  const contact = location.hash === "#contact";
+  $("shop").hidden = contact; $("contactPage").hidden = !contact;
+  $("navContact").setAttribute("aria-current", contact ? "page" : "false");
+  $("navShop").setAttribute("aria-current", contact ? "false" : "page");
+  window.scrollTo(0, 0);
+}
+addEventListener("hashchange", route);
+route();
+renderChips(); renderGrid(); renderCart();
+</script>
+</body></html>
