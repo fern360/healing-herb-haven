@@ -387,8 +387,10 @@ form.checkout { display: grid; gap: 12px; }
 
 <script>
 const SHIPPING = 6.95, FREE_AT = 50;
-// Address of the Square checkout helper (payments/worker.js). Leave "" to take orders by text only.
-const CHECKOUT_URL = "";
+// Address of the Square checkout helper (payments/worker.js). Card checkout runs only on the real website;
+// elsewhere (like the Claude preview, which can't reach outside services) orders go by text.
+const CHECKOUT_URL = /(^|\.)healing-herb-haven\.com$|github\.io$/.test(location.hostname)
+  ? "https://herb-haven-checkout.sanmarcospp2.workers.dev" : "";
 // Dried herbs sell by weight; oils (cat "oils") sell by volume. Keep in sync with payments/worker.js.
 const SIZES = [
   { id: "1oz", label: "1 oz", mult: 1, kind: "herb" },
