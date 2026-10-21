@@ -50,6 +50,7 @@ const SIZES = {
   "4floz": { label: "4 fl oz", mult: 3.2, kind: "oil" },
 };
 const SHIPPING_CENTS = 695, FREE_AT_CENTS = 5000, EXPRESS_CENTS = 900;
+const TAX_PERCENT = "7.25";   // sales tax on products, not shipping. Keep in sync with the website's TAX_RATE.
 
 // Same rounding as the website's priceFor()
 const priceCents = (price, mult) => Math.round((Math.round(price * mult * 4) / 4 - (mult > 1 ? 0.05 : 0)) * 100);
@@ -112,7 +113,11 @@ export default {
       },
       body: JSON.stringify({
         idempotency_key: crypto.randomUUID(),
-        order: { location_id: env.SQUARE_LOCATION_ID, line_items: lineItems },
+        order: {
+          location_id: env.SQUARE_LOCATION_ID,
+          line_items: lineItems,
+          taxes: [{ uid: "sales-tax", name: "Sales tax", percentage: TAX_PERCENT, scope: "ORDER", type: "ADDITIVE" }],
+        },
         checkout_options: {
           redirect_url: site.replace(/#.*$/, "") + "#thanks",
           ask_for_shipping_address: true,

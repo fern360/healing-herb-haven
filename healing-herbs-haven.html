@@ -386,6 +386,7 @@ form.checkout { display: grid; gap: 12px; }
 
 <script>
 const SHIPPING = 6.95, FREE_AT = 50;
+const TAX_RATE = 0.0725;   // sales tax on products (not shipping). Keep in sync with payments/worker.js.
 // Address of the Square checkout helper (payments/worker.js). Card checkout runs only on the real website;
 // elsewhere (like the Claude preview, which can't reach outside services) orders go by text.
 const CHECKOUT_URL = /(^|\.)healing-herb-haven\.com$|github\.io$/.test(location.hostname)
@@ -514,7 +515,8 @@ function escapeHtml(s) { return s.replace(/[&<>"']/g, c => ({ "&": "&amp;", "<":
 function totals() {
   const sub = state.cart.reduce((t, l) => t + priceFor(PRODUCTS.find(p => p.id === l.id), l.size) * l.qty, 0);
   const ship = sub === 0 || sub >= FREE_AT ? 0 : SHIPPING;
-  return { sub, ship, total: sub + ship };
+  const tax = Math.round(sub * 100 * TAX_RATE) / 100;
+  return { sub, ship, tax, total: sub + ship + tax };
 }
 
 function saveCart() { store.set("hhh-cart", state.cart); }
@@ -522,7 +524,7 @@ function saveCart() { store.set("hhh-cart", state.cart); }
 function renderCart() {
   const count = state.cart.reduce((t, l) => t + l.qty, 0);
   $("cartCount").textContent = count;
-  const { sub, ship, total } = totals();
+  const { sub, ship, tax, total } = totals();
   const body = $("drawerBody"), foot = $("drawerFoot");
 
   if (state.view === "done") return;
@@ -551,6 +553,7 @@ function renderCart() {
       foot.innerHTML = `
         <div class="row"><span>Subtotal</span><span>${money(sub)}</span></div>
         <div class="row"><span>Shipping</span><span>${money(ship + exp())}</span></div>
+        <div class="row"><span>Sales tax (7.25%)</span><span>${money(tax)}</span></div>
         <div class="row total"><span>Total</span><span>${money(total + exp())}</span></div>
         ${CHECKOUT_URL ? `<button class="primary" type="submit" form="checkoutForm" id="payBtn">Pay securely with Square</button>` : ""}
         <button class="${CHECKOUT_URL ? "secondary" : "primary"}" type="submit" form="checkoutForm" id="textBtn">${CHECKOUT_URL ? "Text my order instead" : "Review order text"}</button>
@@ -583,6 +586,7 @@ function renderCart() {
   foot.innerHTML = `
     <div class="row"><span>Subtotal</span><span>${money(sub)}</span></div>
     <div class="row"><span>Shipping</span><span>${ship ? money(ship) : "Free"}</span></div>
+    <div class="row"><span>Sales tax (7.25%)</span><span>${money(tax)}</span></div>
     <div class="row total"><span>Total</span><span>${money(total)}</span></div>
     <button class="primary" id="toCheckout">Check out</button>`;
 }
@@ -689,7 +693,7 @@ $("drawer").addEventListener("submit", e => {
   }
   if (CHECKOUT_URL && e.submitter && e.submitter.id === "payBtn") { payWithSquare(e.submitter); return; }
   const express = $("c-ship").value === "exp";
-  const { sub, ship, total } = totals();
+  const { sub, ship, tax, total } = totals();
   const shipping = ship + (express ? 9 : 0);
   const orderNo = "HHH-" + Math.floor(100000 + Math.random() * 900000);
   const v = id => $(id).value.trim();
@@ -700,7 +704,7 @@ $("drawer").addEventListener("submit", e => {
   const orderText = [
     `New order ${orderNo} for Healing Herb Haven`,
     ...items,
-    `Subtotal ${money(sub)}, shipping ${shipping ? money(shipping) : "free"} (${express ? "express" : "standard"}), total ${money(total + (express ? 9 : 0))}`,
+    `Subtotal ${money(sub)}, tax ${money(tax)}, shipping ${shipping ? money(shipping) : "free"} (${express ? "express" : "standard"}), total ${money(total + (express ? 9 : 0))}`,
     `Ship to: ${v("c-name")}, ${v("c-addr")}, ${v("c-city")} ${v("c-zip")}`,
     `Email: ${v("c-email")}`,
   ].join("\n");
@@ -732,7 +736,7 @@ const RULES = `You are "The Herbalist", the friendly shop assistant for Healing 
 Answer shoppers' questions about our herbs: flavor, traditional uses, how to brew or cook with them, storage, sizes and prices, and which product fits what they want. Recommend products from this catalog only, by name, with size and price when helpful:
 ${catalogText}
 
-Shop policies: herbs are weighed to order and ship in resealable light-blocking pouches; standard shipping is $6.95 and free over $50; express is +$9.00 (1-2 business days); standard is 3-5 business days. Leaves and flowers keep best within a year, roots and powders up to two.
+Shop policies: herbs are weighed to order and ship in resealable light-blocking pouches; standard shipping is $6.95 and free over $50; express is +$9.00 (1-2 business days); standard is 3-5 business days. California sales tax of 7.25% is added to products at checkout (not to shipping). Leaves and flowers keep best within a year, roots and powders up to two.
 
 Safety rules: you are not a doctor. Describe traditional or common uses with phrases like "traditionally used for", never promise to treat, cure or prevent a disease. If someone is pregnant, nursing, giving herbs to a child, taking medication, or describes a serious or urgent symptom, tell them to talk to a healthcare provider first (urgent symptoms: seek medical care now). Mention known cautions briefly when relevant (for example licorice root and high blood pressure, hibiscus adding to blood pressure medicine, or other herb-drug interactions). For the High Blood Pressure Tea, never say it lowers or treats blood pressure or replaces medicine; say hibiscus tea has been studied for blood pressure support and that anyone with high blood pressure should keep following their doctor's care. Likewise for the PCOS Tea, never say it treats, cures or balances PCOS or hormones; say spearmint tea has been studied by people interested in hormone balance, and that anyone with PCOS should keep working with their doctor. Cinnamon can affect blood sugar, so people on diabetes medicine should check with their doctor. Its dandelion root acts as a mild diuretic, so people on water pills, lithium or with a ragweed or daisy allergy should check with their doctor. The Quiet the Mind Remedy contains valerian root, which can cause drowsiness: say not to drive after drinking it, not to combine it with sleep aids, sedatives, anxiety medicine or alcohol, and not to use it in pregnancy, while nursing or for children without a doctor's advice; never say it treats anxiety or insomnia. The Menstrual Mix (red rose, hibiscus, spearmint, cinnamon) is a comforting cup during a period; never say it treats cramps, PMS or heavy bleeding, say hibiscus should be avoided in pregnancy, and tell anyone with severe pain, very heavy bleeding or missed periods to see a doctor. Oils: essential oils must be diluted in a carrier oil before skin use, are never to be swallowed, and need extra care around children, pets and pregnancy; oregano oil is especially strong and must be well diluted.
 

@@ -60,6 +60,6 @@ to your address, then run `sh build.sh`, commit and push.
 ## Good to know
 
 - **Changing prices:** prices live in two places, the website (`healing-herbs-haven.html`) and the helper (`payments/worker.js`). Change both, or ask Claude to.
-- **Sales tax:** not added yet. If you need to collect it, turn on tax in your Square Dashboard settings and ask Claude to add it to the helper.
+- **Sales tax:** 7.25% is added to products (not shipping), on the site (`TAX_RATE`) and in the helper (`TAX_PERCENT`). Change both together, then re-paste the helper into Cloudflare.
 - **Order alerts:** turn on email or push notifications for online payments in the Square Dashboard or the Square app.
 - **Texting still works:** shoppers can always tap **Text my order instead**, and if checkout is ever down, the site tells them to text.
