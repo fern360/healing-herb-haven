@@ -416,7 +416,7 @@ const PRODUCTS = [
   { id: "peppermint", name: "Peppermint Leaf", latin: "Mentha × piperita", cat: "tea", origin: "Oregon, USA", cut: "Cut & sifted", price: 3.25, color: "#3F7A4A", shape: "leaf", desc: "Bright, cooling leaf. A classic after-dinner tea." },
   { id: "lavender", name: "Lavender Buds", latin: "Lavandula angustifolia", cat: "skin", origin: "Provence, France", cut: "Whole bud", price: 5.0, color: "#7D6BB0", shape: "flower", tag: "Bestseller", desc: "Fragrant buds for sachets, bath soaks and baking." },
   { id: "calendula", name: "Calendula Petals", latin: "Calendula officinalis", cat: "skin", origin: "Egypt", cut: "Whole petal", price: 5.75, color: "#E07A1F", shape: "flower", desc: "Golden petals prized for infused oils and salves." },
-  { id: "elderberry", name: "Elderberries", latin: "Sambucus nigra", cat: "wellness", origin: "Bulgaria", cut: "Whole berry", price: 4.75, color: "#4A2346", shape: "berry", tag: "Seasonal", desc: "Deep purple berries for syrups and winter tonics." },
+  { id: "elderberry", name: "Elderberries", latin: "Sambucus nigra", cat: "wellness", origin: "Bulgaria", cut: "Whole berry", price: 4.75, color: "#4A2346", shape: "berry", tag: "Seasonal", img: "images/elderberries.jpg", desc: "Deep purple berries for syrups and winter tonics." },
   { id: "ashwagandha", name: "Ashwagandha Root", latin: "Withania somnifera", cat: "wellness", origin: "Rajasthan, India", cut: "Powder", price: 3.9, color: "#A88A63", shape: "powder", desc: "Earthy root powder for lattes and smoothies." },
   { id: "turmeric", name: "Turmeric Root", latin: "Curcuma longa", cat: "culinary", origin: "Kerala, India", cut: "Powder", price: 2.8, color: "#D98A0B", shape: "powder", desc: "Vivid, warm root powder for curries and golden milk." },
   { id: "rosemary", name: "Rosemary Leaf", latin: "Salvia rosmarinus", cat: "culinary", origin: "Morocco", cut: "Whole leaf", price: 2.4, color: "#4E6E58", shape: "leaf", desc: "Resinous needles for roasts, breads and hair rinses." },
@@ -495,7 +495,7 @@ function renderGrid() {
       <div class="swatch" style="--c:${p.color};color:${p.color}">
         <span class="lot">${lotCode(p)}</span>
         ${p.tag ? `<span class="tag">${p.tag}</span>` : ""}
-        ${p.img ? `<img class="photo-bg" src="${p.img}" alt="" aria-hidden="true"><img class="photo" src="${p.img}" alt="${p.name} bottle" loading="lazy">` : `<svg viewBox="0 0 100 100" aria-hidden="true">${SHAPES[p.shape]}</svg>`}
+        ${p.img ? `<img class="photo-bg" src="${p.img}" alt="" aria-hidden="true"><img class="photo" src="${p.img}" alt="${p.name}" loading="lazy">` : `<svg viewBox="0 0 100 100" aria-hidden="true">${SHAPES[p.shape]}</svg>`}
       </div>
       <div class="card-body">
         <div><h3>${p.name}</h3><div class="latin">${p.latin}</div></div>
