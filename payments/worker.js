@@ -35,6 +35,7 @@ const PRODUCTS = {
   clove:       { name: "Whole Cloves", price: 3.75 },
   "raspberry-leaf": { name: "Red Raspberry Leaf", price: 3.25 },
   "holy-basil":  { name: "Holy Basil (Tulsi)", price: 3.6 },
+  guanabana:   { name: "Guanabana Leaf (Soursop)", price: 4.25 },
   "restful-blend": { name: "Restful Night Blend", price: 6.0 },
   "winter-blend":  { name: "Winter Wellness Blend", price: 6.5 },
   "digest-blend":  { name: "After-Dinner Digest Blend", price: 5.75 },
