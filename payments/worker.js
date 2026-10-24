@@ -32,6 +32,7 @@ const PRODUCTS = {
   licorice:    { name: "Licorice Root", price: 3.0 },
   mullein:     { name: "Mullein Leaf", price: 3.5 },
   oregano:     { name: "Oregano Leaf", price: 2.75 },
+  clove:       { name: "Whole Cloves", price: 3.75 },
   "restful-blend": { name: "Restful Night Blend", price: 6.0 },
   "winter-blend":  { name: "Winter Wellness Blend", price: 6.5 },
   "digest-blend":  { name: "After-Dinner Digest Blend", price: 5.75 },
