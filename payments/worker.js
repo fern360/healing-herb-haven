@@ -30,6 +30,7 @@ const PRODUCTS = {
   thyme:       { name: "Thyme Leaf", price: 2.65 },
   ginger:      { name: "Ginger Root", price: 3.35 },
   licorice:    { name: "Licorice Root", price: 3.0 },
+  mullein:     { name: "Mullein Leaf", price: 3.5 },
   "restful-blend": { name: "Restful Night Blend", price: 6.0 },
   "winter-blend":  { name: "Winter Wellness Blend", price: 6.5 },
   "digest-blend":  { name: "After-Dinner Digest Blend", price: 5.75 },
