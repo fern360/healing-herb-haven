@@ -14,31 +14,31 @@
 // (healing-herbs-haven.html), change it here too, or checkout totals will differ.
 
 const PRODUCTS = {
-  chamomile:   { name: "Chamomile Flowers", price: 4.5 },
-  peppermint:  { name: "Peppermint Leaf", price: 3.25 },
-  lavender:    { name: "Lavender Buds", price: 5.0 },
-  calendula:   { name: "Calendula Petals", price: 5.75 },
-  elderberry:  { name: "Elderberries", price: 4.75 },
-  ashwagandha: { name: "Ashwagandha Root", price: 3.9 },
-  turmeric:    { name: "Turmeric Root", price: 2.8 },
+  chamomile:   { name: "Chamomile Flowers", price: 6, prices: { "4oz": 23, "1lb": 88 } },
+  peppermint:  { name: "Peppermint Leaf", price: 2.75, prices: { "4oz": 15, "1lb": 56 } },
+  lavender:    { name: "Lavender Buds", price: 6.75, prices: { "4oz": 26, "1lb": 100 } },
+  calendula:   { name: "Calendula Petals", price: 5, prices: { "4oz": 19, "1lb": 71 } },
+  elderberry:  { name: "Elderberries", price: 5.25, prices: { "4oz": 9, "1lb": 32 } },
+  ashwagandha: { name: "Ashwagandha Root", price: 4.75, prices: { "4oz": 15, "1lb": 56 } },
+  turmeric:    { name: "Turmeric Root", price: 2.5, prices: { "4oz": 17, "1lb": 64 } },
   rosemary:    { name: "Rosemary Leaf", price: 2.4 },
-  hibiscus:    { name: "Hibiscus Flowers", price: 3.1 },
-  lemonbalm:   { name: "Lemon Balm", price: 4.2 },
-  nettle:      { name: "Nettle Leaf", price: 2.95 },
-  rose:        { name: "Rose Petals", price: 6.25 },
-  echinacea:   { name: "Echinacea Herb", price: 4.6 },
-  thyme:       { name: "Thyme Leaf", price: 2.65 },
-  ginger:      { name: "Ginger Root", price: 3.35 },
-  licorice:    { name: "Licorice Root", price: 3.0 },
-  mullein:     { name: "Mullein Leaf", price: 3.5 },
-  oregano:     { name: "Oregano Leaf", price: 2.75 },
+  hibiscus:    { name: "Hibiscus Flowers", price: 3, prices: { "4oz": 13, "1lb": 48 } },
+  lemonbalm:   { name: "Lemon Balm", price: 4.75, prices: { "4oz": 18, "1lb": 68 } },
+  nettle:      { name: "Nettle Leaf", price: 3.5, prices: { "4oz": 11, "1lb": 40 } },
+  rose:        { name: "Rose Petals", price: 3.75, prices: { "4oz": 9, "1lb": 32 } },
+  echinacea:   { name: "Echinacea Herb", price: 7.25, prices: { "4oz": 20, "1lb": 76 } },
+  thyme:       { name: "Thyme Leaf", price: 2.75, prices: { "4oz": 10, "1lb": 36 } },
+  ginger:      { name: "Ginger Root", price: 4.5, prices: { "4oz": 10, "1lb": 36 } },
+  licorice:    { name: "Licorice Root", price: 4, prices: { "4oz": 28, "1lb": 108 } },
+  mullein:     { name: "Mullein Leaf", price: 4, prices: { "4oz": 18, "1lb": 68 } },
+  oregano:     { name: "Oregano Leaf", price: 4.75, prices: { "4oz": 18, "1lb": 68 } },
   clove:       { name: "Whole Cloves", price: 3.75 },
-  "raspberry-leaf": { name: "Red Raspberry Leaf", price: 3.25 },
+  "raspberry-leaf": { name: "Red Raspberry Leaf", price: 3, prices: { "4oz": 14, "1lb": 52 } },
   "holy-basil":  { name: "Holy Basil (Tulsi)", price: 3.6 },
   guanabana:   { name: "Guanabana Leaf (Soursop)", price: 4.25 },
-  "black-cumin": { name: "Black Cumin Seed", price: 3.5 },
-  horsetail:   { name: "Horsetail Herb", price: 3.25 },
-  "cats-claw": { name: "Cat's Claw Bark", price: 4.5 },
+  "black-cumin": { name: "Black Cumin Seed", price: 2.5, prices: { "4oz": 18, "1lb": 68 } },
+  horsetail:   { name: "Horsetail Herb", price: 2.5, prices: { "4oz": 17, "1lb": 64 } },
+  "cats-claw": { name: "Cat's Claw Bark", price: 4.5, prices: { "4oz": 9, "1lb": 32 } },
   "restful-blend": { name: "Restful Night Blend", price: 6.0 },
   "winter-blend":  { name: "Winter Wellness Blend", price: 6.5 },
   "digest-blend":  { name: "After-Dinner Digest Blend", price: 5.75 },
@@ -92,7 +92,9 @@ export default {
       const p = PRODUCTS[String(it.id)], s = SIZES[String(it.size)];
       const qty = Math.round(Number(it.qty));
       if (!p || !s || s.kind !== (p.oil ? "oil" : "herb") || !(qty >= 1 && qty <= 50)) return json({ error: "Your basket has an item we don't recognize. Refresh the page and try again." }, 400, headers);
-      const cents = priceCents(p.price, s.mult);
+      const cents = p.prices && p.prices[String(it.size)] != null
+        ? Math.round(p.prices[String(it.size)] * 100)  // set per-size price, same as the website
+        : priceCents(p.price, s.mult);
       subtotal += cents * qty;
       lineItems.push({ name: `${p.name}, ${s.label}`, quantity: String(qty), base_price_money: { amount: cents, currency: "USD" } });
     }
