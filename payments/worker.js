@@ -21,7 +21,7 @@ const PRODUCTS = {
   elderberry:  { name: "Elderberries", price: 5.25, prices: { "4oz": 9, "1lb": 32 } },
   ashwagandha: { name: "Ashwagandha Root", price: 4.75, prices: { "4oz": 15, "1lb": 56 } },
   turmeric:    { name: "Turmeric Root", price: 2.5, prices: { "4oz": 17, "1lb": 64 } },
-  rosemary:    { name: "Rosemary Leaf", price: 2.4 },
+  rosemary:    { name: "Rosemary Leaf", price: 2.4, soldOut: true },
   hibiscus:    { name: "Hibiscus Flowers", price: 3, prices: { "4oz": 13, "1lb": 48 } },
   lemonbalm:   { name: "Lemon Balm", price: 4.75, prices: { "4oz": 18, "1lb": 68 } },
   nettle:      { name: "Nettle Leaf", price: 3.5, prices: { "4oz": 11, "1lb": 40 } },
@@ -92,6 +92,7 @@ export default {
       const p = PRODUCTS[String(it.id)], s = SIZES[String(it.size)];
       const qty = Math.round(Number(it.qty));
       if (!p || !s || s.kind !== (p.oil ? "oil" : "herb") || !(qty >= 1 && qty <= 50)) return json({ error: "Your basket has an item we don't recognize. Refresh the page and try again." }, 400, headers);
+      if (p.soldOut) return json({ error: `Sorry, ${p.name} is out of stock. Remove it from your basket and try again.` }, 400, headers);
       const cents = p.prices && p.prices[String(it.size)] != null
         ? Math.round(p.prices[String(it.size)] * 100)  // set per-size price, same as the website
         : priceCents(p.price, s.mult);

@@ -127,6 +127,8 @@ select.sort { background: var(--surface-solid); border: 1px solid var(--line-sof
 .size[aria-pressed="true"] { border-color: var(--gold); background: rgba(232, 185, 84, .12); color: var(--gold-hi); }
 .add { border: 0; background: linear-gradient(180deg, var(--gold-hi), var(--gold)); color: var(--gold-ink); border-radius: 8px; padding: 10px; font-weight: 600; }
 .add:hover { box-shadow: 0 0 18px rgba(232, 185, 84, .5); }
+.add:disabled { background: var(--chip); color: var(--muted); box-shadow: none; cursor: not-allowed; }
+.swatch .tag.out { background: var(--chip); color: var(--ink); }
 .empty { grid-column: 1 / -1; text-align: center; padding: 48px 16px; color: var(--muted); }
 
 /* Story + footer */
@@ -412,6 +414,7 @@ const CATS = [
   { id: "oils", label: "Remedy Oils" },
 ];
 // shape: leaf | flower | root | berry | powder | drop
+// soldOut: true shows the product as out of stock and keeps it out of the basket
 // price is the 1 oz (or 1 fl oz) price; optional prices: { "4oz": 19, "1lb": 71 } sets other sizes exactly, otherwise they use the SIZES multipliers
 const PRODUCTS = [
   { id: "chamomile", name: "Chamomile Flowers", latin: "Matricaria chamomilla", cat: "tea", origin: "Egypt", cut: "Whole flower", price: 6, prices: { "4oz": 23, "1lb": 88 }, color: "#D9A928", shape: "flower", tag: "Bestseller", img: "images/chamomile.jpg", desc: "Sweet, apple-scented blossoms for a calming evening cup." },
@@ -421,7 +424,7 @@ const PRODUCTS = [
   { id: "elderberry", name: "Elderberries", latin: "Sambucus nigra", cat: "wellness", origin: "Bulgaria", cut: "Whole berry", price: 5.25, prices: { "4oz": 9, "1lb": 32 }, color: "#4A2346", shape: "berry", tag: "Seasonal", img: "images/elderberries.jpg", desc: "Deep purple berries for syrups and winter tonics." },
   { id: "ashwagandha", name: "Ashwagandha Root", latin: "Withania somnifera", cat: "wellness", origin: "Rajasthan, India", cut: "Powder", price: 4.75, prices: { "4oz": 15, "1lb": 56 }, color: "#A88A63", shape: "powder", img: "images/ashwagandha.jpg", desc: "Earthy root powder for lattes and smoothies." },
   { id: "turmeric", name: "Turmeric Root", latin: "Curcuma longa", cat: "culinary", origin: "Kerala, India", cut: "Powder", price: 2.5, prices: { "4oz": 17, "1lb": 64 }, color: "#D98A0B", shape: "powder", img: "images/turmeric.jpg", desc: "Vivid, warm root powder for curries and golden milk." },
-  { id: "rosemary", name: "Rosemary Leaf", latin: "Salvia rosmarinus", cat: "culinary", origin: "Morocco", cut: "Whole leaf", price: 2.4, color: "#4E6E58", shape: "leaf", desc: "Resinous needles for roasts, breads and hair rinses." },
+  { id: "rosemary", name: "Rosemary Leaf", latin: "Salvia rosmarinus", cat: "culinary", origin: "Morocco", cut: "Whole leaf", price: 2.4, color: "#4E6E58", shape: "leaf", soldOut: true, desc: "Resinous needles for roasts, breads and hair rinses." },
   { id: "hibiscus", name: "Hibiscus Flowers", latin: "Hibiscus sabdariffa", cat: "tea", origin: "Nigeria", cut: "Cut calyx", price: 3, prices: { "4oz": 13, "1lb": 48 }, color: "#B1243F", shape: "flower", img: "images/hibiscus.jpg", desc: "Tart, ruby-red tea that's lovely iced." },
   { id: "lemonbalm", name: "Lemon Balm", latin: "Melissa officinalis", cat: "tea", origin: "Bulgaria", cut: "Cut & sifted", price: 4.75, prices: { "4oz": 18, "1lb": 68 }, color: "#7FA03B", shape: "leaf", img: "images/lemon-balm.jpg", desc: "Soft, lemony leaf for a gentle, uplifting tea." },
   { id: "nettle", name: "Nettle Leaf", latin: "Urtica dioica", cat: "wellness", origin: "Bulgaria", cut: "Cut & sifted", price: 3.5, prices: { "4oz": 11, "1lb": 40 }, color: "#35603A", shape: "leaf", img: "images/nettle.jpg", desc: "Mineral-rich green leaf for daily infusions." },
@@ -476,7 +479,7 @@ const store = {
 const state = {
   cat: "all", q: "", sort: "featured",
   size: {},                               // productId -> sizeId
-  cart: store.get("hhh-cart", []),
+  cart: store.get("hhh-cart", []).filter(l => !(PRODUCTS.find(p => p.id === l.id) || {}).soldOut),  // drop items that went out of stock
   view: "cart",                           // cart | checkout | done
 };
 
@@ -506,7 +509,7 @@ function renderGrid() {
     return `<article class="card">
       <div class="swatch" style="--c:${p.color};color:${p.color}">
         <span class="lot">${lotCode(p)}</span>
-        ${p.tag ? `<span class="tag">${p.tag}</span>` : ""}
+        ${p.soldOut ? `<span class="tag out">Out of stock</span>` : p.tag ? `<span class="tag">${p.tag}</span>` : ""}
         ${p.img ? `<img class="photo-bg" src="${p.img}" alt="" aria-hidden="true"><img class="photo" src="${p.img}" alt="${p.name}" loading="lazy">` : `<svg viewBox="0 0 100 100" aria-hidden="true">${SHAPES[p.shape]}</svg>`}
       </div>
       <div class="card-body">
@@ -516,7 +519,7 @@ function renderGrid() {
         <div class="sizes" role="group" aria-label="Choose size for ${p.name}">
           ${sizesFor(p).map(s => `<button class="size" data-id="${p.id}" data-size="${s.id}" aria-pressed="${sel === s.id}">${s.label}<b>${money(priceFor(p, s.id))}</b></button>`).join("")}
         </div>
-        <button class="add" data-add="${p.id}">Add ${SIZES.find(s => s.id === sel).label} to basket</button>
+        ${p.soldOut ? `<button class="add" disabled>Out of stock</button>` : `<button class="add" data-add="${p.id}">Add ${SIZES.find(s => s.id === sel).label} to basket</button>`}
       </div>
     </article>`;
   }).join("");
@@ -740,7 +743,7 @@ $("drawer").addEventListener("submit", e => {
 // ---- Ask the Herbalist (Claude) ----
 const catalogText = PRODUCTS.map(p =>
   `- id "${p.id}": ${p.name} (${p.latin}), ${CATS.find(c => c.id === p.cat).label}, from ${p.origin}, ${p.cut}. ` +
-  sizesFor(p).map(s => `${s.label} ${money(priceFor(p, s.id))}`).join(" / ") + `. ${p.desc}`
+  sizesFor(p).map(s => `${s.label} ${money(priceFor(p, s.id))}`).join(" / ") + `. ${p.soldOut ? "CURRENTLY OUT OF STOCK (cannot be ordered right now). " : ""}${p.desc}`
 ).join("\n");
 
 const RULES = `You are "The Herbalist", the friendly shop assistant for Healing Herb Haven, an online store selling dried organic herbs, teas and spices. Tagline: "Natural wellness for a brighter you."
@@ -789,6 +792,7 @@ const chatTools = [{
     const p = PRODUCTS.find(p => p.id === String(input.id));
     const s = SIZES.find(s => s.id === String(input.size));
     if (!p || !s || !sizesFor(p).includes(s)) throw new Error("Unknown product id, or that size isn't sold for this product.");
+    if (p.soldOut) throw new Error(`${p.name} is out of stock right now, so it can't be added. Suggest a similar herb instead.`);
     const qty = Math.min(10, Math.max(1, Math.round(Number(input.qty) || 1)));
     const line = state.cart.find(l => l.id === p.id && l.size === s.id);
     line ? (line.qty += qty) : state.cart.push({ id: p.id, size: s.id, qty });
